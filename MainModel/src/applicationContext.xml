@@ -20,7 +20,7 @@
 
     <!--<bean class="org.mybatis.spring.mapper.MapperFactoryBean">-->
         <!--<property name="sqlSessionFactory" ref="sessionFactory"/>-->
-        <!--<property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>-->
+        <!--<property name="mapperInterface" value="com.UserMapper"/>-->
     <!--</bean>-->
  <!---->
     <!--<context:component-scan base-package="com.cskaoyan"/>-->
