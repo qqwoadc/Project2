@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+
+    <!--<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="myDataSource"></property>-->
+        <!--<property name="configLocation" value="classpath:mybatis.xml"/>-->
+    <!--</bean>-->
+
+
+    <!--<bean class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sessionFactory"/>-->
+        <!--<property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>-->
+    <!--</bean>-->
+ <!---->
+    <!--<context:component-scan base-package="com.cskaoyan"/>-->
+
+    <!--<mvc:annotation-driven/>-->
+    <!--<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+        <!--<property name="password" value="123456"/>-->
+        <!--<property name="user" value="root"/>-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/logindemo"/>-->
+        <!--<property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+
+    <!--</bean>-->
+
+    <!--<tx:annotation-driven transaction-manager="txm"></tx:annotation-driven>-->
+
+    <!--<bean id="txm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+        <!--<property name="dataSource" ref="myDataSource"/>-->
+    <!--</bean>-->
+
+    <context:component-scan base-package="com.cskaoyan"/>
+    <mvc:annotation-driven/>
+
+    <bean id="mydb" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="user" value="root"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/project2"/>
+        <property name="password" value="123456"/>
+
+    </bean>
+
+    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="mydb"/>
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>
+        <property name="sqlSessionFactory" ref="factory"/>
+    </bean>
+
+
+
+</beans>
