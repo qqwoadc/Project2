@@ -1,7 +1,7 @@
-package cskaoyan.dao;
+package com.cskaoyan.dao;
 
 
-import cskaoyan.bean.User;
+import com.cskaoyan.bean.User;
 
 public interface UserMapper {
 

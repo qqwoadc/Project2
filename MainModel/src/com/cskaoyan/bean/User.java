@@ -1,4 +1,4 @@
-package cskaoyan.bean;
+package com.cskaoyan.bean;
 
 public class User {
     private String id;

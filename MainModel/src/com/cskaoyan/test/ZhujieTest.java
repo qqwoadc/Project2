@@ -1,4 +1,4 @@
-package cskaoyan.test;
+package com.cskaoyan.test;
 
 public class ZhujieTest {
 

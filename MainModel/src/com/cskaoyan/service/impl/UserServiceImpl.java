@@ -1,9 +1,9 @@
-package cskaoyan.service.impl;
+package com.cskaoyan.service.impl;
 
 
-import cskaoyan.bean.User;
-import cskaoyan.dao.UserMapper;
-import cskaoyan.service.UserService;
+import com.cskaoyan.bean.User;
+import com.cskaoyan.dao.UserMapper;
+import com.cskaoyan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

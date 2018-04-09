@@ -1,7 +1,7 @@
-package cskaoyan.service;
+package com.cskaoyan.service;
 
 
-import cskaoyan.bean.User;
+import com.cskaoyan.bean.User;
 
 public interface UserService {
 
