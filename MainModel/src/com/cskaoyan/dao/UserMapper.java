@@ -13,4 +13,8 @@ public interface UserMapper {
     public int updateUser(User user);
 
     public User isUserNameValid(String username);
+
+    public int deleteUserById(int id);
+
+
 }
