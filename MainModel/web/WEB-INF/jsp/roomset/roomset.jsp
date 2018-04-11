@@ -128,13 +128,13 @@ var表示存储信息的变量名,value表示要存储的值--%>
 	        </tr>
 	      </thead>
 	      <tbody id="tbody">
-		  <%--分页显示--%>
+		  <%--分页显示  list表示页面对象 result表示页面对象维护的一个list里面含有当前页面需要显示(room对象)的集合--%>
+		  <%--再根据页面对象给room list用foreach实现循环显示--%>
 	        <c:forEach items="${list.result}" var="item">
 		        <tr>
 		          <td><input type="checkbox" name="id" value="${item.id}"></td><%--选择 --%>
 		          <td>${item.roomNumber}</td><%--房间号--%>
 		          <td>${item.guestRoomLevelName}</td><%--客房等级--%>
-
                   <%--房间状态-通过判断不同的状态 加入不同的css--%>
 					<%--房态--%>
 		          <c:if test="${item.roomStateID==1}"><%--1为空房间--%>

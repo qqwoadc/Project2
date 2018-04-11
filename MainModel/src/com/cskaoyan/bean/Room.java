@@ -1,29 +1,60 @@
 package com.cskaoyan.bean;
 
-import java.io.Serializable;
 
-public class Room{
+public class Room {
     private Integer id;
 
-    private String roomnumber;
+    private String roomNumber;
 
-    private String guestroomlevelname;
+    private String guestRoomLevelName;
 
-    private Integer roomstateid;
+    private Integer roomStateID;
 
-    private Integer roomamount;
+    private Integer roomAmount;
 
-    private Double standardpriceday;
+    private Double standardPriceDay;
 
-    private Double standardprice;
+    private Double standardPrice;
 
-    private Integer maxduration;
+    private Integer maxDuration;
 
-    private Integer firstduration;
+    private Integer firstDuration;
 
-    private Double firstprice;
+    private Double firstPrice;
 
-    private String roomname;
+    private String roomName;
+
+
+    public Room(Integer id, String roomNumber, String guestRoomLevelName, Integer roomStateID, Integer roomAmount, Double standardPriceDay, Double standardPrice, Integer maxDuration, Integer firstDuration, Double firstPrice, String roomName) {
+        this.id = id;
+        this.roomNumber = roomNumber;
+        this.guestRoomLevelName = guestRoomLevelName;
+        this.roomStateID = roomStateID;
+        this.roomAmount = roomAmount;
+        this.standardPriceDay = standardPriceDay;
+        this.standardPrice = standardPrice;
+        this.maxDuration = maxDuration;
+        this.firstDuration = firstDuration;
+        this.firstPrice = firstPrice;
+        this.roomName = roomName;
+    }
+
+    public Room(String roomNumber, String guestRoomLevelName, Integer roomStateID, Integer roomAmount, Double standardPriceDay, Double standardPrice, Integer maxDuration, Integer firstDuration, Double firstPrice, String roomName) {
+        this.roomNumber = roomNumber;
+        this.guestRoomLevelName = guestRoomLevelName;
+        this.roomStateID = roomStateID;
+        this.roomAmount = roomAmount;
+        this.standardPriceDay = standardPriceDay;
+        this.standardPrice = standardPrice;
+        this.maxDuration = maxDuration;
+        this.firstDuration = firstDuration;
+        this.firstPrice = firstPrice;
+        this.roomName = roomName;
+    }
+
+
+    public Room() {
+    }
 
     public Integer getId() {
         return id;
@@ -33,133 +64,100 @@ public class Room{
         this.id = id;
     }
 
-    public String getRoomnumber() {
-        return roomnumber;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setRoomnumber(String roomnumber) {
-        this.roomnumber = roomnumber == null ? null : roomnumber.trim();
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
-    public String getGuestroomlevelname() {
-        return guestroomlevelname;
+    public String getGuestRoomLevelName() {
+        return guestRoomLevelName;
     }
 
-    public void setGuestroomlevelname(String guestroomlevelname) {
-        this.guestroomlevelname = guestroomlevelname == null ? null : guestroomlevelname.trim();
+    public void setGuestRoomLevelName(String guestRoomLevelName) {
+        this.guestRoomLevelName = guestRoomLevelName;
     }
 
-    public Integer getRoomstateid() {
-        return roomstateid;
+    public Integer getRoomStateID() {
+        return roomStateID;
     }
 
-    public void setRoomstateid(Integer roomstateid) {
-        this.roomstateid = roomstateid;
+    public void setRoomStateID(Integer roomStateID) {
+        this.roomStateID = roomStateID;
     }
 
-    public Integer getRoomamount() {
-        return roomamount;
+    public Integer getRoomAmount() {
+        return roomAmount;
     }
 
-    public void setRoomamount(Integer roomamount) {
-        this.roomamount = roomamount;
+    public void setRoomAmount(Integer roomAmount) {
+        this.roomAmount = roomAmount;
     }
 
-    public Double getStandardpriceday() {
-        return standardpriceday;
+    public Double getStandardPriceDay() {
+        return standardPriceDay;
     }
 
-    public void setStandardpriceday(Double standardpriceday) {
-        this.standardpriceday = standardpriceday;
+    public void setStandardPriceDay(Double standardPriceDay) {
+        this.standardPriceDay = standardPriceDay;
     }
 
-    public Double getStandardprice() {
-        return standardprice;
+    public Double getStandardPrice() {
+        return standardPrice;
     }
 
-    public void setStandardprice(Double standardprice) {
-        this.standardprice = standardprice;
+    public void setStandardPrice(Double standardPrice) {
+        this.standardPrice = standardPrice;
     }
 
-    public Integer getMaxduration() {
-        return maxduration;
+    public Integer getMaxDuration() {
+        return maxDuration;
     }
 
-    public void setMaxduration(Integer maxduration) {
-        this.maxduration = maxduration;
+    public void setMaxDuration(Integer maxDuration) {
+        this.maxDuration = maxDuration;
     }
 
-    public Integer getFirstduration() {
-        return firstduration;
+    public Integer getFirstDuration() {
+        return firstDuration;
     }
 
-    public void setFirstduration(Integer firstduration) {
-        this.firstduration = firstduration;
+    public void setFirstDuration(Integer firstDuration) {
+        this.firstDuration = firstDuration;
     }
 
-    public Double getFirstprice() {
-        return firstprice;
+    public Double getFirstPrice() {
+        return firstPrice;
     }
 
-    public void setFirstprice(Double firstprice) {
-        this.firstprice = firstprice;
+    public void setFirstPrice(Double firstPrice) {
+        this.firstPrice = firstPrice;
     }
 
-    public String getRoomname() {
-        return roomname;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomname(String roomname) {
-        this.roomname = roomname == null ? null : roomname.trim();
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
-
 
     @Override
     public String toString() {
         return "Room{" +
                 "id=" + id +
-                ", roomnumber='" + roomnumber + '\'' +
-                ", guestroomlevelname='" + guestroomlevelname + '\'' +
-                ", roomstateid=" + roomstateid +
-                ", roomamount=" + roomamount +
-                ", standardpriceday=" + standardpriceday +
-                ", standardprice=" + standardprice +
-                ", maxduration=" + maxduration +
-                ", firstduration=" + firstduration +
-                ", firstprice=" + firstprice +
-                ", roomname='" + roomname + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", guestRoomLevelName='" + guestRoomLevelName + '\'' +
+                ", roomStateID=" + roomStateID +
+                ", roomAmount=" + roomAmount +
+                ", standardPriceDay=" + standardPriceDay +
+                ", standardPrice=" + standardPrice +
+                ", maxDuration=" + maxDuration +
+                ", firstDuration=" + firstDuration +
+                ", firstPrice=" + firstPrice +
+                ", roomName='" + roomName + '\'' +
                 '}';
-    }
-
-
-    public Room() {
-    }
-
-
-    public Room( String roomnumber, String guestroomlevelname, Integer roomstateid, Integer roomamount, Double standardpriceday, Double standardprice, Integer maxduration, Integer firstduration, Double firstprice, String roomname) {
-        this.roomnumber = roomnumber;
-        this.guestroomlevelname = guestroomlevelname;
-        this.roomstateid = roomstateid;
-        this.roomamount = roomamount;
-        this.standardpriceday = standardpriceday;
-        this.standardprice = standardprice;
-        this.maxduration = maxduration;
-        this.firstduration = firstduration;
-        this.firstprice = firstprice;
-        this.roomname = roomname;
-    }
-
-    public Room(Integer id, String roomnumber, String guestroomlevelname, Integer roomstateid, Integer roomamount, Double standardpriceday, Double standardprice, Integer maxduration, Integer firstduration, Double firstprice, String roomname) {
-        this.id = id;
-        this.roomnumber = roomnumber;
-        this.guestroomlevelname = guestroomlevelname;
-        this.roomstateid = roomstateid;
-        this.roomamount = roomamount;
-        this.standardpriceday = standardpriceday;
-        this.standardprice = standardprice;
-        this.maxduration = maxduration;
-        this.firstduration = firstduration;
-        this.firstprice = firstprice;
-        this.roomname = roomname;
     }
 }

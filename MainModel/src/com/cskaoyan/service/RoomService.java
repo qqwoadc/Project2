@@ -1,5 +1,8 @@
 package com.cskaoyan.service;
+
 import com.cskaoyan.bean.Room;
+import com.cskaoyan.utils.RoomVO;
+
 import java.util.ArrayList;
 
 public interface RoomService {
@@ -7,8 +10,10 @@ public interface RoomService {
 
 
     //主页跳转客房管理-要查一次所有客房-分页显示
-    //精确查询-如果什么也不输入也要分页显示所有客房
-   ArrayList<Room> findRoomByRoomNumber(String  roomNumber);
+    ArrayList<Room> findAllRoom(RoomVO vo);
+
+    //精确查询
+    ArrayList<Room> findRoomByRoomNumber(RoomVO vo);
 
     //新增客房-
     int insertSelective(Room record);

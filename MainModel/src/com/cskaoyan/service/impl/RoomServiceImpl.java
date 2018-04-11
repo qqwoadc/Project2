@@ -1,5 +1,7 @@
 package com.cskaoyan.service.impl;
+
 import com.cskaoyan.bean.Room;
+import com.cskaoyan.utils.RoomVO;
 import com.cskaoyan.dao.RoomMapper;
 import com.cskaoyan.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,20 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     RoomMapper dao;
 
+
+    //查找所有房间
     @Override
-    public ArrayList<Room> findRoomByRoomNumber(String roomNumber) {
+    public ArrayList<Room> findAllRoom(RoomVO vo) {
 
 
-        return dao.findRoomByRoomNumber(roomNumber);
+        return dao.findAllRoom(vo);
+    }
+
+    @Override
+    public ArrayList<Room> findRoomByRoomNumber(RoomVO vo) {
+
+
+        return dao.findRoomByRoomNumber(vo);
     }
 
     @Override

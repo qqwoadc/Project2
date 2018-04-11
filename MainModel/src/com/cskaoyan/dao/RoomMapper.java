@@ -1,6 +1,7 @@
 package com.cskaoyan.dao;
 
 import com.cskaoyan.bean.Room;
+import com.cskaoyan.utils.RoomVO;
 
 import java.util.ArrayList;
 
@@ -9,20 +10,17 @@ public interface RoomMapper {
     //删除
     int deleteByPrimaryKey(Integer id);
 
-    //增加(所有元素)
-    int insert(Room record);
-
     //增加(部分元素)
     int insertSelective(Room record);
 
-    //查-根据房间号
-    ArrayList<Room> findRoomByRoomNumber(String roomNumber);
+    //查-所有的房间-分页查询
+    ArrayList<Room> findAllRoom(RoomVO vo);
 
-    Room selectByPrimaryKey(Integer id);
+    //查-根据房间号--模糊查询(分页)
+    ArrayList<Room>  findRoomByRoomNumber(RoomVO vo);
 
     //改-房间元素的修改(部分修改)(主要还是房间状态-如何修改的问题)
     int updateByPrimaryKeySelective(Room record);
 
-    int updateByPrimaryKey(Room record);
 
 }

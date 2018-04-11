@@ -3,90 +3,74 @@
 <mapper namespace="com.cskaoyan.dao.RoomMapper">
     <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Room">
         <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="roomNumber" jdbcType="VARCHAR" property="roomnumber"/>
-        <result column="guestRoomLevelName" jdbcType="VARCHAR" property="guestroomlevelname"/>
-        <result column="roomStateID" jdbcType="INTEGER" property="roomstateid"/>
-        <result column="roomAmount" jdbcType="INTEGER" property="roomamount"/>
-        <result column="standardPriceDay" jdbcType="DOUBLE" property="standardpriceday"/>
-        <result column="standardPrice" jdbcType="DOUBLE" property="standardprice"/>
-        <result column="maxDuration" jdbcType="INTEGER" property="maxduration"/>
-        <result column="firstDuration" jdbcType="INTEGER" property="firstduration"/>
-        <result column="firstPrice" jdbcType="DOUBLE" property="firstprice"/>
-        <result column="roomName" jdbcType="VARCHAR" property="roomname"/>
+        <result column="roomNumber" jdbcType="VARCHAR" property="roomNumber"/>
+        <result column="guestRoomLevelName" jdbcType="VARCHAR" property="guestRoomLevelName"/>
+        <result column="roomStateID" jdbcType="INTEGER" property="roomStateID"/>
+        <result column="roomAmount" jdbcType="INTEGER" property="roomAmount"/>
+        <result column="standardPriceDay" jdbcType="DOUBLE" property="standardPriceDay"/>
+        <result column="standardPrice" jdbcType="DOUBLE" property="standardPrice"/>
+        <result column="maxDuration" jdbcType="INTEGER" property="maxDuration"/>
+        <result column="firstDuration" jdbcType="INTEGER" property="firstDuration"/>
+        <result column="firstPrice" jdbcType="DOUBLE" property="firstPrice"/>
+        <result column="roomName" jdbcType="VARCHAR" property="roomName"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, roomNumber, guestRoomLevelName, roomStateID, roomAmount, standardPriceDay, standardPrice, 
-    maxDuration, firstDuration, firstPrice, roomName
-  </sql>
+        id, roomNumber, guestRoomLevelName, roomStateID, roomAmount, standardPriceDay, standardPrice,
+        maxDuration, firstDuration, firstPrice, roomName
+    </sql>
 
-    <select id="findRoomByRoomNumber" parameterType="string" resultType="room">
+    <select id="findAllRoom"   parameterType="roomVO"  resultMap="BaseResultMap">
 
-        SELECT * FROM room
-
-        <where>
-            <if test="_parameter !=null and ! _parameter.isEmpty() ">
-
-                AND roomNumber = #{roomNumber}
-
-            </if>
-        </where>
+        SELECT * FROM room LIMIT #{limit} OFFSET #{offset}
 
     </select>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from room
-        where id = #{id,jdbcType=INTEGER}
+
+    <select id="findRoomByRoomNumber" parameterType="roomVO" resultMap="BaseResultMap">
+
+        SELECT * FROM room  WHERE roomNumber LIKE  #{roomNumber} LIMIT #{limit} OFFSET #{offset}
+
     </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from room
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-    <insert id="insert" parameterType="com.cskaoyan.bean.Room">
-    insert into room (id, roomNumber, guestRoomLevelName, 
-      roomStateID, roomAmount, standardPriceDay, 
-      standardPrice, maxDuration, firstDuration, 
-      firstPrice, roomName)
-    values (#{id,jdbcType=INTEGER}, #{roomnumber,jdbcType=VARCHAR}, #{guestroomlevelname,jdbcType=VARCHAR}, 
-      #{roomstateid,jdbcType=INTEGER}, #{roomamount,jdbcType=INTEGER}, #{standardpriceday,jdbcType=DOUBLE}, 
-      #{standardprice,jdbcType=DOUBLE}, #{maxduration,jdbcType=INTEGER}, #{firstduration,jdbcType=INTEGER}, 
-      #{firstprice,jdbcType=DOUBLE}, #{roomname,jdbcType=VARCHAR})
-  </insert>
+        delete from room
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.Room">
         insert into room
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
             </if>
-            <if test="roomnumber != null">
+            <if test="roomNumber != null">
                 roomNumber,
             </if>
-            <if test="guestroomlevelname != null">
+            <if test="guestRoomLevelName != null">
                 guestRoomLevelName,
             </if>
-            <if test="roomstateid != null">
+            <if test="roomStateID != null">
                 roomStateID,
             </if>
-            <if test="roomamount != null">
+            <if test="roomAmount != null">
                 roomAmount,
             </if>
-            <if test="standardpriceday != null">
+            <if test="standardPriceDay != null">
                 standardPriceDay,
             </if>
-            <if test="standardprice != null">
+            <if test="standardPrice != null">
                 standardPrice,
             </if>
-            <if test="maxduration != null">
+            <if test="maxDuration != null">
                 maxDuration,
             </if>
-            <if test="firstduration != null">
+            <if test="firstDuration != null">
                 firstDuration,
             </if>
-            <if test="firstprice != null">
+            <if test="firstPrice != null">
                 firstPrice,
             </if>
-            <if test="roomname != null">
+            <if test="roomName != null">
                 roomName,
             </if>
         </trim>
@@ -94,86 +78,74 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
-            <if test="roomnumber != null">
-                #{roomnumber,jdbcType=VARCHAR},
+            <if test="roomNumber != null">
+                #{roomNumber,jdbcType=VARCHAR},
             </if>
-            <if test="guestroomlevelname != null">
-                #{guestroomlevelname,jdbcType=VARCHAR},
+            <if test="guestRoomLevelName != null">
+                #{guestRoomLevelName,jdbcType=VARCHAR},
             </if>
-            <if test="roomstateid != null">
-                #{roomstateid,jdbcType=INTEGER},
+            <if test="roomStateID != null">
+                #{roomStateID,jdbcType=INTEGER},
             </if>
-            <if test="roomamount != null">
-                #{roomamount,jdbcType=INTEGER},
+            <if test="roomAmount != null">
+                #{roomAmount,jdbcType=INTEGER},
             </if>
-            <if test="standardpriceday != null">
-                #{standardpriceday,jdbcType=DOUBLE},
+            <if test="standardPriceDay != null">
+                #{standardPriceDay,jdbcType=DOUBLE},
             </if>
-            <if test="standardprice != null">
-                #{standardprice,jdbcType=DOUBLE},
+            <if test="standardPrice != null">
+                #{standardPrice,jdbcType=DOUBLE},
             </if>
-            <if test="maxduration != null">
-                #{maxduration,jdbcType=INTEGER},
+            <if test="maxDuration != null">
+                #{maxDuration,jdbcType=INTEGER},
             </if>
-            <if test="firstduration != null">
-                #{firstduration,jdbcType=INTEGER},
+            <if test="firstDuration != null">
+                #{firstDuration,jdbcType=INTEGER},
             </if>
-            <if test="firstprice != null">
-                #{firstprice,jdbcType=DOUBLE},
+            <if test="firstPrice != null">
+                #{firstPrice,jdbcType=DOUBLE},
             </if>
-            <if test="roomname != null">
-                #{roomname,jdbcType=VARCHAR},
+            <if test="roomName != null">
+                #{roomName,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Room">
         update room
         <set>
-            <if test="roomnumber != null">
-                roomNumber = #{roomnumber,jdbcType=VARCHAR},
+            <if test="roomNumber != null">
+                roomNumber = #{roomNumber,jdbcType=VARCHAR},
             </if>
-            <if test="guestroomlevelname != null">
-                guestRoomLevelName = #{guestroomlevelname,jdbcType=VARCHAR},
+            <if test="guestRoomLevelName != null">
+                guestRoomLevelName = #{guestRoomLevelName,jdbcType=VARCHAR},
             </if>
-            <if test="roomstateid != null">
-                roomStateID = #{roomstateid,jdbcType=INTEGER},
+            <if test="roomStateID != null">
+                roomStateID = #{roomStateID,jdbcType=INTEGER},
             </if>
-            <if test="roomamount != null">
-                roomAmount = #{roomamount,jdbcType=INTEGER},
+            <if test="roomAmount != null">
+                roomAmount = #{roomAmount,jdbcType=INTEGER},
             </if>
-            <if test="standardpriceday != null">
-                standardPriceDay = #{standardpriceday,jdbcType=DOUBLE},
+            <if test="standardPriceDay != null">
+                standardPriceDay = #{standardPriceDay,jdbcType=DOUBLE},
             </if>
-            <if test="standardprice != null">
-                standardPrice = #{standardprice,jdbcType=DOUBLE},
+            <if test="standardPrice != null">
+                standardPrice = #{standardPrice,jdbcType=DOUBLE},
             </if>
-            <if test="maxduration != null">
-                maxDuration = #{maxduration,jdbcType=INTEGER},
+            <if test="maxDuration != null">
+                maxDuration = #{maxDuration,jdbcType=INTEGER},
             </if>
-            <if test="firstduration != null">
-                firstDuration = #{firstduration,jdbcType=INTEGER},
+            <if test="firstDuration != null">
+                firstDuration = #{firstDuration,jdbcType=INTEGER},
             </if>
-            <if test="firstprice != null">
-                firstPrice = #{firstprice,jdbcType=DOUBLE},
+            <if test="firstPrice != null">
+                firstPrice = #{firstPrice,jdbcType=DOUBLE},
             </if>
-            <if test="roomname != null">
-                roomName = #{roomname,jdbcType=VARCHAR},
+            <if test="roomName != null">
+                roomName = #{roomName,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Room">
-    update room
-    set roomNumber = #{roomnumber,jdbcType=VARCHAR},
-      guestRoomLevelName = #{guestroomlevelname,jdbcType=VARCHAR},
-      roomStateID = #{roomstateid,jdbcType=INTEGER},
-      roomAmount = #{roomamount,jdbcType=INTEGER},
-      standardPriceDay = #{standardpriceday,jdbcType=DOUBLE},
-      standardPrice = #{standardprice,jdbcType=DOUBLE},
-      maxDuration = #{maxduration,jdbcType=INTEGER},
-      firstDuration = #{firstduration,jdbcType=INTEGER},
-      firstPrice = #{firstprice,jdbcType=DOUBLE},
-      roomName = #{roomname,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>
