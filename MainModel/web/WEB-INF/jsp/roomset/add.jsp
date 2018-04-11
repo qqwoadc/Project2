@@ -165,6 +165,7 @@
 	      <div class="row-fluid">
 		      <div class="span5">
 			   	  <label class="labelroomnumber marginrighttwo">房间号：</label>
+				  <%--输入房间号--%>
 			      <input id="roomNumberId" name="roomNumber" class="textone inputone"
 			       style="height:26px;" type="text" onblur="YZ(this.value)" onchange="onchangeOne()">
 			       <div id="divOne">
@@ -173,6 +174,7 @@
 			  </div> 
 			  <div class="span5 ">
 			   	  <label class="labelroomnumber marginrightone">房态：</label>
+				  <%--选择房态--%>
 			      <select name="roomStateID" class="cboone inputone">
 		            <c:forEach items="${listTwo}" var="item">
 			          <option value="${item.far_id}" <c:if test="${item.far_id==1}" >selected="selected"</c:if>>
@@ -187,6 +189,7 @@
 	      <div class="row-fluid">
 		      <div class="span5">
 			   	  <label class="labelroomnumber marginrighttwo">床位数：</label>
+				  <%--输入床位数--%>
 			      <input id="roomAmountId" name="roomAmount" class="textone inputone" style="height:26px;" type="text" onblur="onchangeOne()">
 			      <div id="divTwo">
 			         <label class="yansered" style="margin-top:18px;">*</label>
@@ -194,6 +197,7 @@
 			  </div> 
 			  <div class="span5">
 			   	  <label class="labelroomnumber">客房等级：</label>
+				  <%--选择客房等级--%>
 			      <select name="guestRoomLevelID" class="cboone inputone">
 		            <c:forEach items="${listOne}" var="item">
 			          <option value="${item.far_id}" <c:if test="${item.far_id==8}">selected="selected"</c:if>>
@@ -212,6 +216,7 @@
 			   	  <div class="input-prepend" style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				   <%--输入标准价--%>
 			      <input id="standardPriceDayId" name="standardPriceDay" class="textone inputtwo radiusone" onblur="onchangeOne()"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divThree">
@@ -234,6 +239,7 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				  <%--输入标准房价/小时--%>
 			      <input id="standardPriceId" name="standardPrice" class="textone inputthree radiusone" onblur="onchangeOne()"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divFour">
@@ -245,6 +251,7 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				  <%--输入时长限制(小时)--%>
 			      <input id="maxDurationId" name="maxDuration" class="textone inputthree radiusone" onblur="onchangeOne()"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divFive">
@@ -260,6 +267,7 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				  <%--输入首段价格--%>
 			      <input id="firstPriceId" name="firstPrice" class="textone inputthree radiusone" onblur="onchangeOne()"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divSix">
@@ -271,6 +279,7 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				  <%--首段时长(小时)--%>
 			      <input id="firstDurationId" name="firstDuration" class="textone inputthree radiusone" onblur="onchangeOne()"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divSeven">
@@ -309,7 +318,7 @@
  <script type="text/javascript">
  
    
-   
+   /*保证所有需要填的地方不为空*/
    $("#roomNumberId").focus();
  
     function verify(){
@@ -385,7 +394,10 @@
          return true;
       } 
    }
-   
+
+
+
+   /*异步验证-保证房间号不重合*/
    function YZ(value){
      if(value!=""){
        $.ajax({                                                      
@@ -411,7 +423,7 @@
      parent.document.getElementById('Mainid').src='${ctx}/RoomSet/tolist.do';
    }
    
-   
+   /*输入框输入数据的正则验证*/
    //验证
    function onchangeOne(){
      //房间号 

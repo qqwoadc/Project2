@@ -159,11 +159,13 @@
     </div>
     
     <form action="${ctx}/RoomSet/update.do" method="post" onsubmit="return verify()">
+		<%--放一个隐藏的id??用来以后update用 ???--%>
 	   <input type="hidden" name="id" value="${listPo.id}">
 	    <div class="span12 margin-top-two">
 	      <div class="row-fluid">
 		      <div class="span5">
 			   	  <label class="labelroomnumber marginrighttwo">房间号：</label>
+				  <%--回显房间号-输入房间号--%>
 			      <input id="roomNumberId" name="roomNumber" class="textone inputone" onblur="YZ(this.value)"
 			       style="height:26px;" type="text" value="${listPo.roomNumber}" onchange="onchangeOne()">
 			      <div id="divOne" hidden>
@@ -172,6 +174,7 @@
 			  </div> 
 			  <div class="span5 ">
 			   	  <label class="labelroomnumber marginrightone">房态：</label>
+				  <%--回显房态-选择房态--%>
 			      <select name="roomStateID" class="cboone inputone">
 		            <c:forEach items="${listTwo}" var="item">
 			          <option value="${item.far_id}" <c:if test="${item.far_id==listPo.roomStateID}" >selected="selected"</c:if>>
@@ -186,6 +189,7 @@
 	      <div class="row-fluid">
 		      <div class="span5">
 			   	  <label class="labelroomnumber marginrighttwo">床位数：</label>
+				  <%--回显床位数-输入床位数--%>
 			      <input id="roomAmountId" name="roomAmount" class="textone inputone" 
 			      style="height:26px;" type="text" onblur="onchangeOne()" value="${listPo.roomAmount}">
 			      <div id="divTwo" hidden>
@@ -194,6 +198,7 @@
 			  </div> 
 			  <div class="span5">
 			   	  <label class="labelroomnumber">客房等级：</label>
+				  <%--回显客房等级-选择客房等级--%>
 			      <select name="guestRoomLevelID" class="cboone inputone">
 		            <c:forEach items="${listOne}" var="item">
 			          <option value="${item.far_id}" <c:if test="${item.far_id==listPo.guestRoomLevelID}">selected="selected"</c:if>>
@@ -212,6 +217,7 @@
 			   	  <div class="input-prepend" style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				   <%--回显标准房价/天-输入标准房价/天--%>
 			      <input id="standardPriceDayId" name="standardPriceDay" class="textone inputtwo radiusone" onblur="onchangeOne()" value="${listPo.standardPriceDay}"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divThree" hidden>
@@ -234,7 +240,8 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
-			      <input id="standardPriceId" name="standardPrice" class="textone inputthree radiusone" onblur="onchangeOne()" value="${listPo.standardPrice}"
+				  <%--回显标准房价/小时-输入标准房价/小时--%>
+				  <input id="standardPriceId" name="standardPrice" class="textone inputthree radiusone" onblur="onchangeOne()" value="${listPo.standardPrice}"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divFour" hidden>
 			         <label class="yansered" style="margin-top:18px;">*</label>
@@ -245,7 +252,8 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
-			      <input id="maxDurationId" name="maxDuration" class="textone inputthree radiusone" onblur="onchangeOne()" value="${listPo.maxDuration}"
+				  <%--回显时长限制(小时)-输入时长限制(小时)--%>
+				  <input id="maxDurationId" name="maxDuration" class="textone inputthree radiusone" onblur="onchangeOne()" value="${listPo.maxDuration}"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divFive" hidden>
 			         <label class="yansered" style="margin-top:18px;">*</label>
@@ -260,6 +268,7 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				  <%--回显首段价格-输入首段价格--%>
 			      <input id="firstPriceId" name="firstPrice" class="textone inputthree radiusone" onblur="onchangeOne()" value="${listPo.firstPrice}"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divSix" hidden>
@@ -271,6 +280,7 @@
 			      <div class="input-prepend"  style="float:left;">
 			        <span class="add-on" style="margin-top: 12px; height: 16px;">&yen;</span>
 			      </div>
+				  <%--回显首段时长(小时)-输入首段时长(小时)--%>
 			      <input id="firstDurationId" name="firstDuration" class="textone inputthree radiusone" onblur="onchangeOne()" value="${listPo.firstDuration}"
 			      style="float:left;border-radius:0px; border-top-right-radius:4px; border-bottom-right-radius:4px; height:26px;" type="text">
 			      <div id="divSeven" hidden>
@@ -307,9 +317,13 @@
  
  
  <script type="text/javascript">
+
+	 //能拿到没有改之前的值
     var Name=document.getElementById("roomNumberId").value;
   
- 
+
+
+    /*判断所有的选项不为空*/
     function verify(){
     if(document.getElementById("roomNumberId").value==""){
 	     alert("房间号  是必填项，不能为空哦！");
@@ -383,19 +397,22 @@
          return true;
       } 
    }
-   
+
+   /*取消最终跳转-到roomset.jsp*/
     function deletefunction(){
      parent.document.getElementById('Mainid').src='${ctx}/RoomSet/tolist.do';
    }
    
-   
+
+
+   /**/
    function YZ(value){
      if(value!=""){
        $.ajax({                                                      
           cache:false,                                             //是否使用缓存提交 如果为TRUE 会调用浏览器的缓存 而不会提交
           type: "POST",                                           //上面3行都是必须要的
           url: '${ctx}/RoomSet/YZ.do',       //地址 type 带参数
-          data:"roomNumber="+value,                         // IDCardValue 自定义的。相当于name把值赋予给 他可以在servlet 获取
+          data:"roomNumber="+value,                         //(把值传给后台) IDCardValue 自定义的。相当于name把值赋予给 他可以在servlet 获取
           async:false,                                          // 是否 异步 提交
           success: function (result) {                          // 不出现异常 进行立面方
               if(Name==document.getElementById("roomNumberId").value){
@@ -412,7 +429,9 @@
      }
    }
    
-   
+
+
+   /*用正则表达式对输入框输入的值进行约束*/
     //验证
    function onchangeOne(){
      //房间号 
