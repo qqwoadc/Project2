@@ -11,33 +11,32 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-
     <!--<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="myDataSource"></property>-->
-        <!--<property name="configLocation" value="classpath:mybatis.xml"/>-->
+    <!--<property name="dataSource" ref="myDataSource"></property>-->
+    <!--<property name="configLocation" value="classpath:mybatis.xml"/>-->
     <!--</bean>-->
 
 
     <!--<bean class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="sqlSessionFactory" ref="sessionFactory"/>-->
-        <!--<property name="mapperInterface" value="com.UserMapper"/>-->
+    <!--<property name="sqlSessionFactory" ref="sessionFactory"/>-->
+    <!--<property name="mapperInterface" value="com.UserMapper"/>-->
     <!--</bean>-->
- <!---->
+    <!---->
     <!--<context:component-scan base-package="com.cskaoyan"/>-->
 
     <!--<mvc:annotation-driven/>-->
     <!--<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
-        <!--<property name="password" value="123456"/>-->
-        <!--<property name="user" value="root"/>-->
-        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/logindemo"/>-->
-        <!--<property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+    <!--<property name="password" value="123456"/>-->
+    <!--<property name="user" value="root"/>-->
+    <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/logindemo"/>-->
+    <!--<property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
 
     <!--</bean>-->
 
     <!--<tx:annotation-driven transaction-manager="txm"></tx:annotation-driven>-->
 
     <!--<bean id="txm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="myDataSource"/>-->
+    <!--<property name="dataSource" ref="myDataSource"/>-->
     <!--</bean>-->
 
     <context:component-scan base-package="com.cskaoyan"/>
@@ -56,16 +55,23 @@
         <property name="configLocation" value="classpath:mybatis.xml"/>
     </bean>
 
+    <!--每一个mapper都需要配置对应的mapper工厂-->
     <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <!--<property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>-->
         <property name="mapperInterface" value="com.cskaoyan.dao.RoomMapper"/>
         <property name="sqlSessionFactory" ref="factory"/>
     </bean>
-
     <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>
-        <!--<property name="mapperInterface" value="com.cskaoyan.dao.RoomMapper"/>-->
+        <property name="mapperInterface" value="com.cskaoyan.dao.PassengerMapper"/>
         <property name="sqlSessionFactory" ref="factory"/>
+    </bean>
+
+  <!--  <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>
+        <property name="sqlSessionFactory" ref="factory"/>
+    </bean>-->
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.cskaoyan.dao"></property>
     </bean>
 
 
