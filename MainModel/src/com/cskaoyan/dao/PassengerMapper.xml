@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.dao.PassengerMapper">
+
+    <select id="findAllPassenger"  resultType="Passenger">
+        SELECT * from  passenger
+    </select>
+
+    <update id="updatePassenger" parameterType="int" >
+        UPDATE passenger set name=#{name},genderName=#{genderName},birthDate=#{birthDate},nationName=#{nationName},
+        licenceIssuingAuthorty=#{licenceIssuingAuthorty},profession=#{profession},educationDegreeID=#{educationDegreeID},
+         passengerLevelName=#{passengerLevelName},papersValidity=#{papersValidity},papersName=#{papersName},
+         papersNumber=#{papersNumber},unitsOrAddress=#{unitsOrAddress},thingReasonID=#{thingReasonID},whereAreFrom=#{whereAreFrom},
+         whereToGo=#{whereToGo},contactPhoneNumber=#{contactPhoneNumber},remarks=#{remarks}WHERE id=#{id}
+    </update>
+
+    <insert id="addPassenger" parameterType="Passenger" >
+        INSERT INTO passenger VALUES (id=null,name=#{name},genderName=#{genderName},birthDate=#{birthDate},nationName=#{nationName},
+        licenceIssuingAuthorty=#{licenceIssuingAuthorty},profession=#{profession},educationDegreeID=#{educationDegreeID},
+         passengerLevelName=#{passengerLevelName},papersValidity=#{papersValidity},papersName=#{papersName},
+         papersNumber=#{papersNumber},unitsOrAddress=#{unitsOrAddress},thingReasonID=#{thingReasonID},whereAreFrom=#{whereAreFrom},
+         whereToGo=#{whereToGo},contactPhoneNumber=#{contactPhoneNumber},remarks=#{remarks})
+    </insert>
+
+    <delete id="deletePassenger" parameterType="int">
+        DELETE * from  passenger WHERE id=#{id}
+    </delete>
+
+    <select id="findPassengerByName" parameterType="string" resultType="Passenger">
+        SELECT * from  passenger WHERE name like #{name}
+    </select>
+
+</mapper>
