@@ -13,28 +13,39 @@
         <result column="firstDuration" jdbcType="INTEGER" property="firstDuration"/>
         <result column="firstPrice" jdbcType="DOUBLE" property="firstPrice"/>
         <result column="roomName" jdbcType="VARCHAR" property="roomName"/>
+        <result column="guestRoomLevelID" jdbcType="INTEGER" property="guestRoomLevelID"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, roomNumber, guestRoomLevelName, roomStateID, roomAmount, standardPriceDay, standardPrice,
-        maxDuration, firstDuration, firstPrice, roomName
+        maxDuration, firstDuration, firstPrice, roomName, guestRoomLevelID
     </sql>
 
-    <select id="findAllRoom"   parameterType="roomVO"  resultMap="BaseResultMap">
+    <select id="findRoomById" parameterType="int" resultMap="BaseResultMap">
+
+        SELECT * FROM room  WHERE id = #{id}
+
+    </select>
+
+
+    <select id="findAllRoom" parameterType="com.cskaoyan.utils.RoomVO" resultMap="BaseResultMap">
 
         SELECT * FROM room LIMIT #{limit} OFFSET #{offset}
 
     </select>
 
-
-    <select id="findRoomByRoomNumber" parameterType="roomVO" resultMap="BaseResultMap">
+    <select id="findRoomByRoomNumber" parameterType="com.cskaoyan.utils.RoomVO" resultMap="BaseResultMap">
 
         SELECT * FROM room  WHERE roomNumber LIKE  #{roomNumber} LIMIT #{limit} OFFSET #{offset}
 
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey">
         delete from room
-        where id = #{id,jdbcType=INTEGER}
+        <where>
+            <foreach collection="array" item="id">
+               OR id = #{id}
+            </foreach>
+        </where>
     </delete>
 
     <insert id="insertSelective" parameterType="com.cskaoyan.bean.Room">
@@ -73,6 +84,9 @@
             <if test="roomName != null">
                 roomName,
             </if>
+            <if test="guestRoomLevelID != null">
+                guestRoomLevelID,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -107,6 +121,9 @@
             </if>
             <if test="roomName != null">
                 #{roomName,jdbcType=VARCHAR},
+            </if>
+            <if test="guestRoomLevelID != null">
+                #{guestRoomLevelID,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -143,6 +160,9 @@
             </if>
             <if test="roomName != null">
                 roomName = #{roomName,jdbcType=VARCHAR},
+            </if>
+            <if test="guestRoomLevelID != null">
+                guestRoomLevelID = #{guestRoomLevelID,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}

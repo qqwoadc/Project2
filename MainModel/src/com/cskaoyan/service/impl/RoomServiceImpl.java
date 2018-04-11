@@ -47,8 +47,16 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer id) {
-        return dao.deleteByPrimaryKey(id);
+    public int deleteByPrimaryKey(int[] ids) {
+        return dao.deleteByPrimaryKey(ids);
+    }
+
+    @Override
+    public Room findRoomById(int id) {
+
+        Room room = dao.findRoomById(id);
+
+        return room;
     }
 
 }

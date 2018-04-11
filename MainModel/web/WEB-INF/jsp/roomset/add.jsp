@@ -180,7 +180,7 @@
 			          <option value="${item.far_id}" <c:if test="${item.far_id==1}" >selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
-			        </c:forEach> 
+			        </c:forEach>
 		          </select>
 			  </div>
 		  </div>

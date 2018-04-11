@@ -24,8 +24,28 @@ public class Room {
 
     private String roomName;
 
+    private Integer guestRoomLevelID;
 
-    public Room(Integer id, String roomNumber, String guestRoomLevelName, Integer roomStateID, Integer roomAmount, Double standardPriceDay, Double standardPrice, Integer maxDuration, Integer firstDuration, Double firstPrice, String roomName) {
+
+    public Room() {
+    }
+
+    public Room(String roomNumber, String guestRoomLevelName, Integer roomStateID, Integer roomAmount, Double standardPriceDay, Double standardPrice, Integer maxDuration, Integer firstDuration, Double firstPrice, String roomName, Integer guestRoomLevelID) {
+        this.roomNumber = roomNumber;
+        this.guestRoomLevelName = guestRoomLevelName;
+        this.roomStateID = roomStateID;
+        this.roomAmount = roomAmount;
+        this.standardPriceDay = standardPriceDay;
+        this.standardPrice = standardPrice;
+        this.maxDuration = maxDuration;
+        this.firstDuration = firstDuration;
+        this.firstPrice = firstPrice;
+        this.roomName = roomName;
+        this.guestRoomLevelID = guestRoomLevelID;
+    }
+
+
+    public Room(Integer id, String roomNumber, String guestRoomLevelName, Integer roomStateID, Integer roomAmount, Double standardPriceDay, Double standardPrice, Integer maxDuration, Integer firstDuration, Double firstPrice, String roomName, Integer guestRoomLevelID) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.guestRoomLevelName = guestRoomLevelName;
@@ -37,24 +57,9 @@ public class Room {
         this.firstDuration = firstDuration;
         this.firstPrice = firstPrice;
         this.roomName = roomName;
+        this.guestRoomLevelID = guestRoomLevelID;
     }
 
-    public Room(String roomNumber, String guestRoomLevelName, Integer roomStateID, Integer roomAmount, Double standardPriceDay, Double standardPrice, Integer maxDuration, Integer firstDuration, Double firstPrice, String roomName) {
-        this.roomNumber = roomNumber;
-        this.guestRoomLevelName = guestRoomLevelName;
-        this.roomStateID = roomStateID;
-        this.roomAmount = roomAmount;
-        this.standardPriceDay = standardPriceDay;
-        this.standardPrice = standardPrice;
-        this.maxDuration = maxDuration;
-        this.firstDuration = firstDuration;
-        this.firstPrice = firstPrice;
-        this.roomName = roomName;
-    }
-
-
-    public Room() {
-    }
 
     public Integer getId() {
         return id;
@@ -144,6 +149,15 @@ public class Room {
         this.roomName = roomName;
     }
 
+    public Integer getGuestRoomLevelID() {
+        return guestRoomLevelID;
+    }
+
+    public void setGuestRoomLevelID(Integer guestRoomLevelID) {
+        this.guestRoomLevelID = guestRoomLevelID;
+    }
+
+
     @Override
     public String toString() {
         return "Room{" +
@@ -158,6 +172,7 @@ public class Room {
                 ", firstDuration=" + firstDuration +
                 ", firstPrice=" + firstPrice +
                 ", roomName='" + roomName + '\'' +
+                ", guestRoomLevelID=" + guestRoomLevelID +
                 '}';
     }
 }

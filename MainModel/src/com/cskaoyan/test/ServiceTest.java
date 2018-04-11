@@ -24,9 +24,8 @@ public class ServiceTest {
     @Test
     public void test1() {
 
-
-        service.deleteByPrimaryKey(7);
-
+        int[] ids = {1, 2};
+        service.deleteByPrimaryKey(ids);
 
     }
 
@@ -36,7 +35,7 @@ public class ServiceTest {
 
         Room room = new Room("007", "单人普通房",
                 1, 1, 200.0, 50.0,
-                4, 1, 150.0, "空房间");
+                4, 1, 150.0, "空房间", 1);
 
         int insert = service.insertSelective(room);
 
@@ -65,7 +64,7 @@ public class ServiceTest {
 
         Room room = new Room(9, "007", "豪华间",
                 1, 1, 200.0, 50.0,
-                4, 1, 150.0, "空房间");
+                4, 1, 150.0, "空房间", 4);
 
         int i = service.updateByPrimaryKeySelective(room);
         System.out.println(i);
@@ -87,5 +86,14 @@ public class ServiceTest {
 
     }
 
+
+    //查找所有房间
+    @Test
+    public void test6() {
+
+
+        service.findRoomById(1);
+
+    }
 
 }

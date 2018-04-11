@@ -4,9 +4,9 @@ package com.cskaoyan.utils;
 //包装类
 public class RoomVO {
 
-    String roomNumber;
-    int limit;
-    int offset;
+   private String roomNumber;
+   private int limit;
+   private int offset;
 
 
     public RoomVO() {

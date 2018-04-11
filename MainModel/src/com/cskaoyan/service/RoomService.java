@@ -22,6 +22,10 @@ public interface RoomService {
     int updateByPrimaryKeySelective(Room record);
 
     //删除客房-(批量循环删除-直接在dao层实现)
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(int[] ids);
+
+
+    //通过id查找
+    Room findRoomById(int id);
 
 }

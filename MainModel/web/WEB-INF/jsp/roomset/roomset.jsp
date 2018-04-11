@@ -213,7 +213,7 @@ var表示存储信息的变量名,value表示要存储的值--%>
    function deletefunction(){
    var chk_value=[];
   	$('input[name="id"]:checked').each(function(){
-  		chk_value.push($(this).val());
+ 		chk_value.push($(this).val());
   	});
   	if(chk_value!=""){
   	var flag=window.confirm("注意：您确定要永久删除该信息吗?");
