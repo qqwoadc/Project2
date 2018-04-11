@@ -24,7 +24,7 @@ public class Mycontroller {
 
     @RequestMapping("login.do")
     public void login(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-
+        // test
 
         User userByNameAndWord = service.findUserByNameAndWord(user);
         request.setAttribute("user",userByNameAndWord);
