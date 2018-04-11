@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-  <typeAliases>
-      <package name="com.cskaoyan.bean"></package>
-  </typeAliases>
+    <typeAliases>
+        <package name="com.cskaoyan.bean"/>
+    </typeAliases>
 
     <mappers>
-        <package name="com.cskaoyan.dao"></package>
+        <package name="com.cskaoyan.dao"/>
     </mappers>
 </configuration>
