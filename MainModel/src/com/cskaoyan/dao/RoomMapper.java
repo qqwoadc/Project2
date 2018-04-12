@@ -25,4 +25,18 @@ public interface RoomMapper {
     //查找要修改的房间
     Room findRoomById(int id);
 
+    //查找所有行
+
+    int findAllRoomCount();
+
+
+    //根据条件查找所有行
+
+    int finRoomCount(String txtname);
+
+    //根据房间号精确查找
+
+    int exactFindByRoomNumber(String roomNumber);
+
+
 }

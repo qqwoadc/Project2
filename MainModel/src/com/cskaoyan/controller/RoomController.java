@@ -9,8 +9,10 @@ import com.cskaoyan.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
@@ -26,27 +28,24 @@ public class RoomController {
 
     //通过房间号查询
     @RequestMapping(path = "/tolist.do", method = {RequestMethod.GET, RequestMethod.POST})
-    public String findRoom(String txtname, String current, Model model) {
+    public String findRoom(String txtname, Integer currentPage, Model model) {
 
         System.out.println(txtname);
-        System.out.println(current);
-
+        System.out.println(currentPage);
         ArrayList<Room> roomList;//room链表
 
 
-        int currentPage = 1;
+        //判断是不是第一页,第一次访问没有currentPage
+        if (currentPage == null) {
 
-
-        if (current != null) {
-
-            currentPage = Integer.valueOf(current) + 1;
+            currentPage = 1;
 
         }
 
 
         int totalPage;//总页数
 
-        double limit = 100;//每页数据
+        double limit = 2;//每页数据
 
         int offset;//偏移量
 
@@ -66,7 +65,10 @@ public class RoomController {
 
             System.out.println(roomList);
 
-            totalRoom = roomList.size();//得到总的房间-数量
+
+            //要增加一个查找所有列的方法
+
+            totalRoom = service.findAllRoomCount();//得到总的房间-数量
 
             totalPage = (int) Math.ceil(totalRoom / limit);//算出总页数
 
@@ -78,6 +80,8 @@ public class RoomController {
             roomPage.setResult(roomList);//传入列表对象
 
             roomPage.setCurrentPage(currentPage);//传入当前页数
+
+            System.out.println(roomPage);
 
             model.addAttribute("list", roomPage);//放入域对象中
 
@@ -93,13 +97,16 @@ public class RoomController {
 
             RoomVO roomVO = new RoomVO();//产生包装类
 
-            roomVO.setRoomNumber("%"+txtname+"%");//放入值
+            roomVO.setRoomNumber("%" + txtname + "%");//放入值
             roomVO.setLimit((int) limit);
             roomVO.setOffset(offset);
 
             roomList = service.findRoomByRoomNumber(roomVO);//查数据库,查出链表
 
-            totalRoom = roomList.size();//求出房间总数
+
+            //要增加一个查询跟txtname对应的列的方法
+
+            totalRoom = service.finRoomCount("%" + txtname + "%");//求出房间总数
 
             totalPage = (int) Math.ceil(totalRoom / limit); //求出页面总数
 
@@ -117,6 +124,7 @@ public class RoomController {
             return "/WEB-INF/jsp/roomset/roomset.jsp";
 
         }
+
 
     }
 
@@ -238,7 +246,7 @@ public class RoomController {
 
     //修改房间信息的下拉栏
     @RequestMapping(path = "toupdate.do", method = {RequestMethod.GET, RequestMethod.POST})
-    public String toUpdateRoom(Model model,int id) {
+    public String toUpdateRoom(Model model, int id) {
 
         System.out.println(id);
         ArrayList<RoomLevel> levelList = new ArrayList<>();//客房等级
@@ -280,15 +288,13 @@ public class RoomController {
         statusList.add(roomStatus6);
 
 
-
-
         //查询room对象并且回显
         Room room = service.findRoomById(id);
 
         //放入域对象中
         model.addAttribute("listOne", levelList);
         model.addAttribute("listTwo", statusList);
-        model.addAttribute("listPo",room);
+        model.addAttribute("listPo", room);
 
         return "/WEB-INF/jsp/roomset/update.jsp";
 
@@ -361,10 +367,23 @@ public class RoomController {
 
     //用阿贾克斯验证房间号是否存在(使用json数据)
     @RequestMapping(path = "YZ.do", method = {RequestMethod.GET, RequestMethod.POST})
-    public String updateRoomAJX() {
+    @ResponseBody
+    public int updateRoomAJX(@RequestBody String roomNumber) {
 
 
-        return "/WEB-INF/jsp/roomset/update.jsp";
+        System.out.println(roomNumber);
+        //根据roomNumber精确查找是否存相同的房间号
+
+        String[] split = roomNumber.split("=");
+
+        roomNumber = split[1];
+
+        int result = service.exactFindByRoomNumber(roomNumber);
+
+
+        System.out.println(result);
+
+        return result;
     }
 
 
