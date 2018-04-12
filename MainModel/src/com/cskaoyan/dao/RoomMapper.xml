@@ -20,6 +20,30 @@
         maxDuration, firstDuration, firstPrice, roomName, guestRoomLevelID
     </sql>
 
+    <select id="exactFindByRoomNumber" parameterType="string" resultType="int">
+
+        select count(*) from room  WHERE roomNumber = #{roomNumber}
+
+    </select>
+
+
+
+    <select id="findAllRoomCount" resultType="int">
+
+        select count(*) from room
+
+
+    </select>
+
+
+    <select id="finRoomCount"   parameterType="string"   resultType="int">
+
+        select count(*) from room where  roomNumber LIKE #{roomNumber}   ;
+
+
+    </select>
+
+
     <select id="findRoomById" parameterType="int" resultMap="BaseResultMap">
 
         SELECT * FROM room  WHERE id = #{id}
@@ -43,7 +67,7 @@
         delete from room
         <where>
             <foreach collection="array" item="id">
-               OR id = #{id}
+                OR id = #{id}
             </foreach>
         </where>
     </delete>

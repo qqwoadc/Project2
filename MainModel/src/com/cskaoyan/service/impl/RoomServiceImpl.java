@@ -59,4 +59,31 @@ public class RoomServiceImpl implements RoomService {
         return room;
     }
 
+    @Override
+    public int findAllRoomCount() {
+
+        int count = dao.findAllRoomCount();
+
+
+        return count;
+    }
+
+    @Override
+    public int finRoomCount(String txtname) {
+
+
+        int count = dao.finRoomCount(txtname);
+
+
+        return count;
+    }
+
+    @Override
+    public int exactFindByRoomNumber(String roomNumber) {
+
+        int i = dao.exactFindByRoomNumber(roomNumber);
+
+        return i;
+    }
+
 }

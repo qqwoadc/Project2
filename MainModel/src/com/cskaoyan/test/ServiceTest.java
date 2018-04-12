@@ -87,7 +87,7 @@ public class ServiceTest {
     }
 
 
-    //查找所有房间
+    //查找所有房间通过id
     @Test
     public void test6() {
 
@@ -95,5 +95,43 @@ public class ServiceTest {
         service.findRoomById(1);
 
     }
+
+
+    //查找所有行
+    @Test
+    public void test7() {
+
+
+        int i = service.findAllRoomCount();
+
+
+        System.out.println(i);
+
+    }
+
+
+    @Test
+    public void test8() {
+
+        int i = service.finRoomCount("%00%");
+        System.out.println(i);
+
+    }
+
+
+
+    @Test
+    public void test9() {
+
+
+        String roomNumber="003";
+
+        int i = service.exactFindByRoomNumber(roomNumber);
+        System.out.println(i+"=============================================");
+
+    }
+
+
+
 
 }

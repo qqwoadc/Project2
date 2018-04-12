@@ -28,4 +28,16 @@ public interface RoomService {
     //通过id查找
     Room findRoomById(int id);
 
+    //查找所有行
+
+    int findAllRoomCount();
+
+
+    //根据条件查找所有行
+
+    int finRoomCount(String txtname);
+
+    //精准查询
+    int exactFindByRoomNumber(String roomNumber);
+
 }
