@@ -11,19 +11,29 @@ import java.util.List;
 @Service
 public class PassengerServiceImpl implements PassengerService{
     @Autowired
-    public PassengerMapper passengerMapper;
+    PassengerMapper passengerMapper;
     @Override
-    public List<Passenger> selectPassengersList() {
+    public List selectPassengersList() {
         return passengerMapper.findAllPassenger();
     }
 
     @Override
     public int deletePassengerById(int id) {
-        return 0;
+        return passengerMapper.deletePassenger(id);
     }
 
     @Override
-    public int addPassenger() {
-        return 0;
+    public int addPassenger(Passenger passenger) {
+        return passengerMapper.addPassenger(passenger);
+    }
+
+    @Override
+    public int updatePassenger(Passenger passenger) {
+        return passengerMapper.updatePassenger(passenger);
+    }
+
+    @Override
+    public List<Passenger> findPassengerByName(String name) {
+        return passengerMapper.findPassengerByName(name);
     }
 }

@@ -2,12 +2,13 @@ package com.cskaoyan.dao;
 
 import com.cskaoyan.bean.Passenger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface PassengerMapper {
-    public List<Passenger> findAllPassenger();
-    public int addPassenger(Passenger passenger);
-    public int updatePassenger(int id);
-    public int deletePassenger(int id);
-    public Passenger findPassengerByName(String name);
+    List<Passenger> findAllPassenger();
+    int addPassenger(Passenger passenger);
+    int updatePassenger(Passenger passenger);
+    int deletePassenger(int id);
+    List<Passenger> findPassengerByName(String name);
 }

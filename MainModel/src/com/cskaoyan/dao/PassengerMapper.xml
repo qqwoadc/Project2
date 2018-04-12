@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.dao.PassengerMapper">
 
-    <select id="findAllPassenger"  resultType="list">
-        SELECT * from  passenger
+    <select id="findAllPassenger"  resultType="com.cskaoyan.bean.Passenger">
+        SELECT name,genderName,birthDate,nationName,passengerLevelName,papersName,papersNumber,contactPhoneNumber from  passenger
     </select>
 
-    <update id="updatePassenger" parameterType="int" >
+    <update id="updatePassenger" parameterType="Passenger" >
         UPDATE passenger set name=#{name},genderName=#{genderName},birthDate=#{birthDate},nationName=#{nationName},
         licenceIssuingAuthorty=#{licenceIssuingAuthorty},profession=#{profession},educationDegreeID=#{educationDegreeID},
          passengerLevelName=#{passengerLevelName},papersValidity=#{papersValidity},papersName=#{papersName},
@@ -14,7 +14,7 @@
          whereToGo=#{whereToGo},contactPhoneNumber=#{contactPhoneNumber},remarks=#{remarks}WHERE id=#{id}
     </update>
 
-    <insert id="addPassenger" parameterType="Passenger" >
+    <insert id="addPassenger" parameterType="com.cskaoyan.bean.Passenger" >
         INSERT INTO passenger VALUES (id=null,name=#{name},genderName=#{genderName},birthDate=#{birthDate},nationName=#{nationName},
         licenceIssuingAuthorty=#{licenceIssuingAuthorty},profession=#{profession},educationDegreeID=#{educationDegreeID},
          passengerLevelName=#{passengerLevelName},papersValidity=#{papersValidity},papersName=#{papersName},
@@ -26,7 +26,7 @@
         DELETE * from  passenger WHERE id=#{id}
     </delete>
 
-    <select id="findPassengerByName" parameterType="string" resultType="Passenger">
+    <select id="findPassengerByName"  resultType="com.cskaoyan.bean.Passenger">
         SELECT * from  passenger WHERE name like #{name}
     </select>
 

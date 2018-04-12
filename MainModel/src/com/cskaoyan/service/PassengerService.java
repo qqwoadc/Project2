@@ -7,5 +7,7 @@ import java.util.List;
 public interface PassengerService{
     List<Passenger> selectPassengersList();
     int deletePassengerById(int id);
-    int addPassenger();
+    int addPassenger(Passenger passenger);
+    int updatePassenger(Passenger passenger);
+    List<Passenger> findPassengerByName(String name);
 }
