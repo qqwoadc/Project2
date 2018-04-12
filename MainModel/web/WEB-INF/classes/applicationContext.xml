@@ -56,14 +56,14 @@
     </bean>
 
     <!--每一个mapper都需要配置对应的mapper工厂-->
-    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+<!--    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.cskaoyan.dao.RoomMapper"/>
         <property name="sqlSessionFactory" ref="factory"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.cskaoyan.dao.PassengerMapper"/>
         <property name="sqlSessionFactory" ref="factory"/>
-    </bean>
+    </bean>-->
 
   <!--  <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.cskaoyan.dao.UserMapper"/>
