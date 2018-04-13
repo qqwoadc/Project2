@@ -9,8 +9,8 @@ public class Passenger {
     //性别
     String genderName;
     //出生日期
-    Date birthDate;
-    //国别
+    String birthDate;
+    //民族
     String nationName;
     //发证机关
     String licenceIssuingAuthorty;
@@ -63,11 +63,11 @@ public class Passenger {
         this.genderName = genderName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

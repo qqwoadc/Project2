@@ -1,6 +1,7 @@
 package com.cskaoyan.test;
 
 import com.cskaoyan.bean.Room;
+import com.cskaoyan.utils.Page;
 import com.cskaoyan.utils.RoomVO;
 import com.cskaoyan.service.RoomService;
 import org.junit.Test;
@@ -20,6 +21,7 @@ public class ServiceTest {
     @Autowired
     RoomService service;
 
+/*
     //测试删除
     @Test
     public void test1() {
@@ -119,19 +121,38 @@ public class ServiceTest {
     }
 
 
-
     @Test
     public void test9() {
 
 
-        String roomNumber="003";
+        String roomNumber = "003";
 
         int i = service.exactFindByRoomNumber(roomNumber);
-        System.out.println(i+"=============================================");
+        System.out.println(i + "=============================================");
+
+    }
+*/
+
+
+    @Test
+    public void test10() {
+
+
+        Page<Room> roomPage = service.allRoomPaging(1, 2);
+        System.out.println(roomPage);
+
 
     }
 
 
+    @Test
+    public void test11() {
 
+
+        Page<Room> roomPage = service.searchRoomPaging("003", 1, 2);
+        System.out.println(roomPage);
+
+
+    }
 
 }

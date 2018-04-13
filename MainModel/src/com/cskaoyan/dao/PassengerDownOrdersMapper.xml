@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.dao.PassengerDownOrdersMapper">
+    <select id="findGender"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 1
+    </select>
+    <select id="findNation"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 2
+    </select>
+    <select id="findCultureLevel"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 3
+    </select>
+    <select id="findPassengerLevel"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 4
+    </select>
+    <select id="findLicenseCategory"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 5
+    </select>
+    <select id="findLicenseNumber"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 6
+    </select>
+    <select id="findReason"  resultType="com.cskaoyan.bean.PassengerDownOrders">
+        SELECT * from  PassengerDownOrders WHERE id = 7
+    </select>
+</mapper>
