@@ -1,3 +1,4 @@
+/*
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.PassengerDownOrders;
@@ -46,3 +47,4 @@ public class PassengerDownOrdersServiceImpl implements PassengerDownOrdersServic
     }
 
 }
+*/
