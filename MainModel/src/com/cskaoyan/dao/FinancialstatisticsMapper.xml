@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.dao.FinancialstatisticsMapper">
+
+
+    <select id="findAllFinancialstatistics" resultType="financialstatistics">
+        select * from financialstatistics limit #{limit} offset #{offset};
+    </select>
+
+    <select id="findFinancialstatisticsByPayTime" resultType="financialstatistics">
+        SELECT * from financialstatistics where payTime between to_date(#{start},'yyyy/mm/dd') and to_date(#{end},'yyyy/mm/dd') limit #{limit} offset #{offset}
+    </select>
+
+    <insert id="addFinancialstatistics" parameterType="financialstatistics">
+        insert into financialstatistics VALUES (
+        NULL ,
+        #{payTime},
+        #{stayregisterdetailsId},
+        #{passengerNumber},
+        #{consumptionMoney}
+        #{sumConst},
+        );
+    </insert>
+
+    <select id="getTotalItems">
+        SELECT COUNT * from financialstatistics;
+    </select>
+
+
+    <select id="getzhuSuRenShu" resultType="int">
+        SELECT passengerNumber from financialstatistics;
+    </select>
+
+    <select id="getxiaoFeiJinE" resultType="float">
+        SELECT consumptionMoney from financialstatistics;
+    </select>
+
+    <select id="getJieZhangJinE" resultType="float">
+        SELECT sumConst from financialstatistics;
+    </select>
+
+</mapper>
