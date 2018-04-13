@@ -327,7 +327,7 @@
 		     </div>
 		     <div class="span4">
 		        <label class="floatont">住宿费：</label>
-		        <label class="yanseblue">${zhuSuFei}</label>
+		        <label class="yanseblue">${list[0].zhuSuFei}</label>
 		     </div>
 		     <div class="span3">
 		        <label class="floatont">换房费：</label>
@@ -340,11 +340,11 @@
 	      <div class="row-fluid">
 		     <div class="span4">
 		        <label class="floatont">其他消费：</label>
-		        <label class="yanseblue">${qiTaXiaoFei}</label>
+		        <label class="yanseblue">${list[0].qiTaXiaoFei}</label>
 		     </div>
 		     <div class="span4">
 		        <label class="floatont">旅客押金：</label>
-		        <label class="yanseblue">${yaJin}</label>
+		        <label class="yanseblue">${list[0].yaJin}</label>
 		     </div>
 		     <div class="span3">
 		        <label class="floatont">总费用：</label>
