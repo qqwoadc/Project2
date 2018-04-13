@@ -32,6 +32,11 @@
         <property name="basePackage" value="com.cskaoyan.dao"></property>
     </bean>
 
-
-
+    <bean  class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.cskaoyan.utils.MyDateConverter"/>
+            </set>
+        </property>
+    </bean>
 </beans>
