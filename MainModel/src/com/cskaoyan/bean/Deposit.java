@@ -1,24 +1,34 @@
 package com.cskaoyan.bean;
 
 public class Deposit {
-//判断旅客类型，为2表示散客，不为2表示团体
+
+
+    private int id;
+    private int predetermineId;
+
+    //判断旅客类型，为2表示散客，不为2表示团体
     private int receiveTargetID;
     private String receiveTargeTypeName;
     private String receiveTeamName;
-    private String deposit;
+    private float deposit;
     private String depositPayWayName;
     private String depositRegisterTime;
 
-    @Override
-    public String toString() {
-        return "Deposit{" +
-                "receiveTargetID=" + receiveTargetID +
-                ", receiveTargeTypeName='" + receiveTargeTypeName + '\'' +
-                ", receiveTeamName='" + receiveTeamName + '\'' +
-                ", deposit='" + deposit + '\'' +
-                ", depositPayWayName='" + depositPayWayName + '\'' +
-                ", depositRegisterTime='" + depositRegisterTime + '\'' +
-                '}';
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPredetermineId() {
+        return predetermineId;
+    }
+
+    public void setPredetermineId(int predetermineId) {
+        this.predetermineId = predetermineId;
     }
 
     public int getReceiveTargetID() {
@@ -45,11 +55,11 @@ public class Deposit {
         this.receiveTeamName = receiveTeamName;
     }
 
-    public String getDeposit() {
+    public float getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(String deposit) {
+    public void setDeposit(float deposit) {
         this.deposit = deposit;
     }
 
@@ -67,5 +77,19 @@ public class Deposit {
 
     public void setDepositRegisterTime(String depositRegisterTime) {
         this.depositRegisterTime = depositRegisterTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                "id=" + id +
+                ", predetermineId=" + predetermineId +
+                ", receiveTargetID=" + receiveTargetID +
+                ", receiveTargeTypeName='" + receiveTargeTypeName + '\'' +
+                ", receiveTeamName='" + receiveTeamName + '\'' +
+                ", deposit='" + deposit + '\'' +
+                ", depositPayWayName='" + depositPayWayName + '\'' +
+                ", depositRegisterTime='" + depositRegisterTime + '\'' +
+                '}';
     }
 }

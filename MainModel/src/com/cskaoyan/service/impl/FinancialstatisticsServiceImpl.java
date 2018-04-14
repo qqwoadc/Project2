@@ -39,7 +39,7 @@ public class FinancialstatisticsServiceImpl implements FinancialstatisticsServic
         int offset = (cp-1)*limit;
 
 
-        int totalItems = dao.getTotalItems();
+        double totalItems = dao.getTotalItems();
         int totalPage = (int) Math.ceil(totalItems/limit);
 
         mypage.setTotalPage(totalPage);

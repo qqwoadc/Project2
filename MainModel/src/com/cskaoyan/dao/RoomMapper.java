@@ -4,6 +4,7 @@ import com.cskaoyan.bean.Room;
 import com.cskaoyan.utils.RoomVO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RoomMapper {
 
@@ -38,5 +39,7 @@ public interface RoomMapper {
 
     int exactFindByRoomNumber(String roomNumber);
 
+
+    List<Room> getAllRoom();
 
 }

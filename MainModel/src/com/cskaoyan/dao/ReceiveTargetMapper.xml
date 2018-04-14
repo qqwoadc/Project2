@@ -5,24 +5,106 @@
 
 <mapper namespace="com.cskaoyan.dao.ReceiveTargetMapper">
 
-    <!--模糊查找-->
-    <select id="findRtByTeamName" parameterType="string" resultType="receivetarget">
-        SELECT * from receivetarget WHERE teamName LIKE #{teamName}
+    <!--模糊查找。需要分页-->    <!--语句内的字段与在包装类里定义-->
+    <select id="findRtBlur" parameterType="com.cskaoyan.utils.ReceiveTargetVO" resultType="com.cskaoyan.bean.ReceiveTarget">
+
+        SELECT * FROM receivetarget
+        WHERE teamName LIKE #{teamName}
+        OR principal LIKE #{principal}
+        OR teamCode LIKE #{teamCode}
+        OR contactPhoneNUmber LIKE #{contactPhoneNUmber} LIMIT #{limit} OFFSET #{offset}
+
+    </select>
+
+<!--    <select id="findRoomByRoomNumber" parameterType="com.cskaoyan.utils.RoomVO" resultMap="BaseResultMap">
+
+        SELECT * FROM room  WHERE roomNumber LIKE  #{roomNumber} LIMIT #{limit} OFFSET #{offset}
+
+    </select>-->
+
+
+    <!--查找所有对象的总数-->
+    <select id="findReceiveTargetCount" resultType="integer">
+       SELECT COUNT(*) FROM receivetarget
+    </select>
+
+    <!--查找部分对象的数量-->
+    <select id="findReceiveTargetPartCount" parameterType="string" resultType="int">
+        SELECT COUNT (*) FROM receivetarget WHERE teamName like #{teamName}
     </select>
 
     <!--添加对象团体-->
-    <insert id="addReceiveTarget" parameterType="receivetarget">
-        insert into receivetarget values(#{teamCode},#{teamName},#{targetTypeName},#{principal},#{contactPhoneNUmber},#{registerTime})
+    <insert id="addReceiveTarget" parameterType="com.cskaoyan.bean.ReceiveTarget">
+        INSERT INTO receivetarget VALUES (NULL,#{receiveTargetTypeName},#{teamCode},#{teamName},#{principal},#{registerTime},#{contactPhoneNUmber} )
     </insert>
 
+    <!--INSERT INTO receivetarget (id,targetTypeName,teamCode,teamName,principal,registerTime,contactPhoneNUmber)
+    VALUES (#{id},#{targetTypeName},#{teamCode},#{teamName},#{principal},#{registerTime},#{contactPhoneNUmber});-->
+
     <!--修改团体信息-->
-    <update id="updateRtByTeamCode" parameterType="receivetarget">
-        UPDATE receivetarget SET teamName=#{teamName},principal=#{principal},contactPhoneNUmber=#{contactPhoneNUmber} WHERE teamCode=#{teamCode}
+    <!--<update id="updateRtByTeamCode" parameterType="Integer">-->
+        <!--UPDATE receivetarget SET teamCode=#{teamCode},teamName=#{teamName},principal=#{principal},contactPhoneNUmber=#{contactPhoneNUmber} WHERE id=#{id}-->
+    <!--</update>-->
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.ReceiveTarget">
+        update receivetarget
+        <set>
+            <if test="teamCode != null">
+                teamCode = #{teamCode,jdbcType=VARCHAR},
+            </if>
+            <if test="targetTypeName != null">
+                targetTypeName = #{targetTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="teamName != null">
+                teamName = #{teamName,jdbcType=VARCHAR},
+            </if>
+            <if test="principal != null">
+                principal = #{principal,jdbcType=VARCHAR},
+            </if>
+            <if test="registerTime != null">
+                registerTime = #{registerTime,jdbcType=DATE},
+            </if>
+            <if test="contactPhoneNUmber != null">
+                contactPhoneNUmber = #{contactPhoneNUmber,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <!--删除团体信息-->
-    <select id="deleteRtByTeamCode" parameterType="string" resultType="receivetarget">
-        DELETE FROM receivetarget WHERE teamCode=#{teamCode}
+
+    <!--查找所有对象-->
+    <select id="findAllRt" parameterType="com.cskaoyan.utils.ReceiveTargetVO" resultType="com.cskaoyan.bean.ReceiveTarget">
+
+        SELECT * FROM receivetarget LIMIT #{limit} OFFSET #{offset}
+
     </select>
+
+<!--
+    <select id="findAllRt"  resultType="string">
+        SELECT * FROM receivetarget
+    </select>
+-->
+
+    <!--id值查找接待对象-->
+    <select id="findReceiveTargetById" parameterType="int" resultType="com.cskaoyan.bean.ReceiveTarget">
+        SELECT * FROM receivetarget WHERE id=#{id}
+    </select>
+
+    <!--批量删除对象-->
+    <select id="deleteReceiveTargetByIds" resultType="Integer" >
+        DELETE FROM receivetarget
+        <where>
+            <foreach collection="array" item="id">
+                OR id=#{id}
+            </foreach>
+        </where>
+    </select>
+
+    <!--删除单个对象-->
+    <select id="deleteReceiveTargetById" resultType="Integer">
+        DELETE FROM receivetarget WHERE id=#{id};
+    </select>
+
+
 
 </mapper>

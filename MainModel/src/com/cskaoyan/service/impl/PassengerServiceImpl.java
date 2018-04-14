@@ -1,8 +1,10 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Passenger;
+import com.cskaoyan.bean.ReceiveTarget;
 import com.cskaoyan.dao.PassengerMapper;
 import com.cskaoyan.service.PassengerService;
+import com.cskaoyan.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +38,5 @@ public class PassengerServiceImpl implements PassengerService{
     public List<Passenger> findPassengerByName(String name) {
         return passengerMapper.findPassengerByName(name);
     }
+
 }

@@ -191,5 +191,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-
+    <select id="getAllRoom" resultType="room">
+        SELECT * from room;
+    </select>
 </mapper>

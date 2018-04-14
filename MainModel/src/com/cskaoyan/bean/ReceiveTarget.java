@@ -3,13 +3,60 @@ package com.cskaoyan.bean;
 import java.util.Date;
 
 public class ReceiveTarget {
-
+    int id;
+    int targetTypeID;
+    String targetTypeName;
     String teamCode;
     String teamName;
     String principal;
     String contactPhoneNUmber;
-    Date registerTime;
-    String targetTypeName;
+    String registerTime;
+    String receiveTargetTypeName;
+
+    ReceiveTargetType receiveTargetType;
+
+
+    public ReceiveTarget(int id, int targetTypeID, String targetTypeName, String teamCode, String teamName,
+                         String principal, String contactPhoneNUmber, String registerTime, String
+                                 receiveTargetTypeName, ReceiveTargetType receiveTargetType) {
+        this.id = id;
+        this.targetTypeID = targetTypeID;
+        this.targetTypeName = targetTypeName;
+        this.teamCode = teamCode;
+        this.teamName = teamName;
+        this.principal = principal;
+        this.contactPhoneNUmber = contactPhoneNUmber;
+        this.registerTime = registerTime;
+        this.receiveTargetTypeName = receiveTargetTypeName;
+        this.receiveTargetType = receiveTargetType;
+    }
+
+    public ReceiveTarget() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTargetTypeID() {
+        return targetTypeID;
+    }
+
+    public void setTargetTypeID(int targetTypeID) {
+        this.targetTypeID = targetTypeID;
+    }
+
+    public String getTargetTypeName() {
+        return targetTypeName;
+    }
+
+    public void setTargetTypeName(String targetTypeName) {
+        this.targetTypeName = targetTypeName;
+    }
 
     public String getTeamCode() {
         return teamCode;
@@ -43,31 +90,43 @@ public class ReceiveTarget {
         this.contactPhoneNUmber = contactPhoneNUmber;
     }
 
-    public Date getRegisterTime() {
+    public String getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
     }
 
-    public String getTargetTypeName() {
-        return targetTypeName;
+    public String getReceiveTargetTypeName() {
+        return receiveTargetTypeName;
     }
 
-    public void setTargetTypeName(String targetTypeName) {
-        this.targetTypeName = targetTypeName;
+    public void setReceiveTargetTypeName(String receiveTargetTypeName) {
+        this.receiveTargetTypeName = receiveTargetTypeName;
+    }
+
+    public ReceiveTargetType getReceiveTargetType() {
+        return receiveTargetType;
+    }
+
+    public void setReceiveTargetType(ReceiveTargetType receiveTargetType) {
+        this.receiveTargetType = receiveTargetType;
     }
 
     @Override
     public String toString() {
         return "ReceiveTarget{" +
-                "teamCode='" + teamCode + '\'' +
+                "id=" + id +
+                ", targetTypeID=" + targetTypeID +
+                ", targetTypeName='" + targetTypeName + '\'' +
+                ", teamCode='" + teamCode + '\'' +
                 ", teamName='" + teamName + '\'' +
                 ", principal='" + principal + '\'' +
                 ", contactPhoneNUmber='" + contactPhoneNUmber + '\'' +
                 ", registerTime=" + registerTime +
-                ", targetTypeName='" + targetTypeName + '\'' +
+                ", receiveTargetTypeName='" + receiveTargetTypeName + '\'' +
+                ", receiveTargetType=" + receiveTargetType +
                 '}';
     }
 }
