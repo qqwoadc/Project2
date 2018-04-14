@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.dao.PredetermineMapper">
+
+    <!--查 查找所有预定信息-->
+    <select id="findAllPredetermineMSG" resultType="com.cskaoyan.bean.Predetermine">
+        SELECT * FROM predetermine
+    </select>
+
+    <!--增 添加预定信息-->
+    <insert id="addPredetermineMSG" parameterType="predetermine">
+        INSERT into predetermine VALUES (
+        null,
+        #{passengerId},
+        #{roomNumber},
+        #{guestRoomLevelName},
+        #{teamId},
+        #{arriveTime},
+        #{deposit},
+        #{predetermineDay},
+        #{predetermineStateName},
+        #{remind},
+        #{receiveTargetTypeName},
+        #{passengerName},
+        #{passengerContactPhoneNumber},
+        #{receiveTeamName},
+        #{receivePrincipal},
+        #{receiveContactPhoneNumber})
+    </insert>
+
+    <!--删 删除预定信息-->
+    <delete id="deletePredetermineMSGById" parameterType="Predetermine">
+        DELETE FROM predetermine WHERE predetermineId=#{predetermineId}
+    </delete>
+
+    <!--改 修改预定信息-->
+    <update id="updatePredetermineMSG" parameterType="predetermine">
+        UPDATE predetermine SET
+        passengerId =#{passengerId},
+        roomNumber =#{roomNumber},
+        guestRoomLevelName =#{guestRoomLevelName},
+        teamId =#{teamId},
+        arriveTime =#{arriveTime},
+        deposit =#{deposit},
+        predetermineDay =#{predetermineDay},
+        predetermineStateName =#{predetermineStateName},
+        remind =#{remind},
+        receiveTargetTypeName =#{receiveTargetTypeName},
+        passengerName =#{passengerName},
+        passengerContactPhoneNumber =#{passengerContactPhoneNumber},
+        receiveTeamName =#{receiveTeamName},
+        receivePrincipal =#{receivePrincipal},
+        receiveContactPhoneNumber =#{receiveContactPhoneNumber}
+        WHERE predetermineId=#{predetermineId}
+    </update>
+
+    <!--查 查找默认记录总数（未安排）-->
+    <select id="findTotalMSGNum1" resultType="int">
+        SELECT COUNT(*) FROM predetermine WHERE predetermineStateName = "未安排"
+    </select>
+
+    <!--查 根据state查找记录总数-->
+    <select id="findTotalMSGNum2" resultType="int">
+         SELECT COUNT(*) FROM predetermine WHERE predetermineStateName = #{MSG}
+    </select>
+
+    <!--查 查找符合条件的信息记录数-->
+    <select id="searchMSGNum" resultType="int">
+        SELECT COUNT(*) FROM predetermine WHERE predetermineStateName = #{predetermineStateName} AND
+        (receiveTeamName LIKE #{txtname} or passengerName LIKE #{txtname})
+    </select>
+
+    <!--查 查找默认预定页面的每页信息-->
+    <select id="findPartPredetermineMSG1" resultType="com.cskaoyan.bean.Predetermine">
+        SELECT * FROM predetermine WHERE predetermineStateName = "未安排" limit #{limit} offset #{offset}
+    </select>
+
+    <!--查 根据MSG查找页面信息-->
+    <select id="findPartPredetermineMSG2" resultType="com.cskaoyan.bean.Predetermine">
+        SELECT * FROM predetermine WHERE predetermineStateName = #{predetermineStateName} limit #{limit} offset #{offset}
+    </select>
+
+    <!--查 查找符合条件的页面信息-->
+    <select id="findPartPredetermineMSG3" resultType="com.cskaoyan.bean.Predetermine">
+        SELECT * FROM predetermine WHERE predetermineStateName = #{predetermineStateName} AND
+        (receiveTeamName LIKE #{txtname} or passengerName LIKE #{txtname}) limit #{limit} offset #{offset}
+    </select>
+
+    <!--查 查找receivetarget表中的所有信息-->
+    <select id="findAllTeamTarget" resultType="com.cskaoyan.bean.ReceiveTarget">
+        SELECT * FROM receivetarget
+    </select>
+    
+    <!--查 根据txtname查找receivetarget表中的信息-->
+    <select id="findTeamTargetByName" resultType="com.cskaoyan.bean.ReceiveTarget">
+        SELECT * FROM receivetarget WHERE teamName LIKE #{txtname}
+    </select>
+
+    <!--查 查找所有旅客信息-->
+    <select id="findAllPassenger" resultType="passenger">
+        SELECT * FROM passenger
+    </select>
+
+    <!--查 根据txtname查找旅客信息-->
+    <select id="findPassengerByName" resultType="passenger">
+        SELECT * FROM passenger WHERE name LIKE #{txtname}
+    </select>
+
+    <!--查 根据id查找旅客信息-->
+    <select id="findPassengerById" resultType="passenger">
+        SELECT * FROM passenger WHERE id = #{id}
+    </select>
+    
+    <!--查 查找所有可用房间-->
+    <select id="findAllAvailableRoom" resultType="room">
+        SELECT * FROM room WHERE roomStateID = "1"
+    </select>
+    
+    <!--查 根据roomNumber查找房间-->
+    <select id="findRoomByNumber" parameterType="string" resultType="room">
+        SELECT * FROM room WHERE roomStateID = "1" AND roomNumber = #{roomNumber}
+    </select>
+
+    <!--查 根据roomid查找房间-->
+    <select id="findRoomById" resultType="room">
+        SELECT * FROM room WHERE id = #{roomId}
+    </select>
+
+    <!--改 将房间状态修改为预定状态-->
+    <update id="updateRoomById" >
+        UPDATE room SET roomName="预定",roomStateID=4;
+    </update>
+    
+    <!--查 根据id查找接待对象-->
+    <select id="findTeamById" parameterType="int" resultType="com.cskaoyan.bean.ReceiveTarget">
+        SELECT * FROM receivetarget WHERE id=#{id}
+    </select>
+</mapper>

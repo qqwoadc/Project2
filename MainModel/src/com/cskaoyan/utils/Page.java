@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Page<T> {
 
-    public final static int DEFAULT_IETMS = 10;
+    public final static int DEFAULT_IETMS = 2;
 
     //总页数
     private int totalPage;

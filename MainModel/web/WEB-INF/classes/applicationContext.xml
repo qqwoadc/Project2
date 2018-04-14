@@ -18,7 +18,7 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="user" value="root"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/project2"/>
-        <property name="password" value="111"/>
+        <property name="password" value="910730"/>
 
     </bean>
 
@@ -29,7 +29,8 @@
 
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.cskaoyan.dao"></property>
+        <property name="sqlSessionFactoryBeanName" value="factory"/>
+        <property name="basePackage" value="com.cskaoyan.dao"/>
     </bean>
 
     <bean  class="org.springframework.format.support.FormattingConversionServiceFactoryBean">

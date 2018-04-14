@@ -134,7 +134,7 @@
            <label>押金：</label>
            <div class="input-prepend">
 			  <span class="add-on" style="float:left;height: 15px;">&yen;</span>
-		      <input id="depositId" name="deposit" onchange="onchangeOne()"
+		      <input id="depositId" name="deposite" onchange="onchangeOne()"
 		      style="width:78%;height: 25px; float:left;" type="text" >
 		      <div id="divTwo">
 	             <label class="yansered" style="margin-top:7px;">*</label>
@@ -145,7 +145,7 @@
            <label>支付方式</label>
            <select name="payWayID" style="height:26px;width:100%;"> 
 		            <c:forEach items="${listOne}" var="item">
-			          <option value="${item.far_id}" <c:if test="${item.far_id==21}" >selected="selected"</c:if>>
+			          <option value="${item.far_id}" <c:if test="${item.far_id==1}" >selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
 			        </c:forEach> 

@@ -197,8 +197,8 @@
 	          <th >选择</th>
 	          <th >房间号</th>
 	          <th >客房等级</th>
-	          <th >接待对象</th>
-	          <th >旅客姓名</th>
+	          <th >对象类型</th>
+	          <th >预订人姓名</th>
 	          <th >抵达时间</th>
 	          <th >押金</th>
 	          <th >预定天数</th>
@@ -210,11 +210,11 @@
 	        <c:forEach items="${list.result}" var="item">
 		        <c:if test="${item.remind==0}" >
 		           <tr>
-			          <c:if test="${item.passengerID!=0}">
-				          <td><input type="checkbox" name="id" value="${item.id}"></td>
+			          <c:if test="${item.passengerId!=0}">
+				          <td><input type="checkbox" name="id" value="${item.predetermineId}"></td>
 				          <td>${item.roomNumber}</td>
-				          <td>${item.roomGuestRoomLevelName}</td>
-				          <td>${item.receiveTargeTypeName}</td>
+				          <td>${item.guestRoomLevelName}</td>
+				          <td>${item.receiveTargetTypeName}</td>
 				          <td>${item.passengerName}</td>
 				          <td>${item.arriveTime}</td>
 				          <td>${item.deposit}</td>
@@ -222,27 +222,27 @@
 				          <td>${item.passengerContactPhoneNumber}</td>
 				          <td>${item.predetermineStateName}</td>
 			          </c:if>
-			          <c:if test="${item.passengerID==0}">
-				          <td><input type="checkbox" name="id" value="${item.id}"></td>
+			          <c:if test="${item.passengerId==0}">
+				          <td><input type="checkbox" name="id" value="${item.predetermineId}"></td>
 				          <td>${item.roomNumber}</td>
-				          <td>${item.roomGuestRoomLevelName}</td>
+				          <td>${item.guestRoomLevelName}</td>
 				          <td>${item.receiveTeamName}</td>
 				          <td>${item.receivePrincipal}</td>
 				          <td>${item.arriveTime}</td>
 				          <td>${item.deposit}</td>
 				          <td>${item.predetermineDay}</td>
-				          <td>${item.receiveContactPhoneNUmber}</td>
+				          <td>${item.receiveContactPhoneNumber}</td>
 				          <td>${item.predetermineStateName}</td>
 			          </c:if>
 		           </tr>
 		        </c:if>
 		        <c:if test="${item.remind==1}" >
 		           <tr style="color:red;">
-			          <c:if test="${item.passengerID!=0}">
-				          <td><input type="checkbox" name="id" value="${item.id}"></td>
+			          <c:if test="${item.passengerId!=0}">
+				          <td><input type="checkbox" name="id" value="${item.predetermineId}"></td>
 				          <td>${item.roomNumber}</td>
-				          <td>${item.roomGuestRoomLevelName}</td>
-				          <td>${item.receiveTargeTypeName}</td>
+				          <td>${item.guestRoomLevelName}</td>
+				          <td>${item.receiveTargetTypeName}</td>
 				          <td>${item.passengerName}</td>
 				          <td>${item.arriveTime}</td>
 				          <td>${item.deposit}</td>
@@ -250,16 +250,16 @@
 				          <td>${item.passengerContactPhoneNumber}</td>
 				          <td>${item.predetermineStateName}</td>
 			          </c:if>
-			          <c:if test="${item.passengerID==0}">
-				          <td><input type="checkbox" name="id" value="${item.id}"></td>
+			          <c:if test="${item.passengerId==0}">
+				          <td><input type="checkbox" name="id" value="${item.predetermineId}"></td>
 				          <td>${item.roomNumber}</td>
-				          <td>${item.roomGuestRoomLevelName}</td>
+				          <td>${item.guestRoomLevelName}</td>
 				          <td>${item.receiveTeamName}</td>
 				          <td>${item.receivePrincipal}</td>
 				          <td>${item.arriveTime}</td>
 				          <td>${item.deposit}</td>
 				          <td>${item.predetermineDay}</td>
-				          <td>${item.receiveContactPhoneNUmber}</td>
+				          <td>${item.receiveContactPhoneNumber}</td>
 				          <td>${item.predetermineStateName}</td>
 			          </c:if>
 		           </tr>
@@ -391,14 +391,14 @@
           alert("你还没有添加对象信息哦！")
         }else{
           parent.document.getElementById('Mainid').src='${ctx}/Predetermine/toadd.do?id='+one+
-          '&name='+teamName+'&type=1';
+          '&name='+teamName+'&type=0';
         }
      }else{
        if(two == "" ){
           alert("你还没有添加旅客信息哦！")
         }else{
           parent.document.getElementById('Mainid').src='${ctx}/Predetermine/toadd.do?id='+two+
-          '&name='+lvKeName+'&type=2';
+          '&name='+lvKeName+'&type=1';
         }
      }
      
@@ -498,7 +498,7 @@
          async:false,
          success: function (result) {
              document.getElementById("twoId").value=chk_value;
-             document.getElementById("contactPhoneNumberId").value=result;
+             document.getElementById("contactPhoneNumberId").value=result.contactPhoneNumber;
              document.getElementById("nameId").value=name;
              document.getElementById("papersTypeId").value=papersType;
              document.getElementById("papersNumberId").value=papersNumber;
