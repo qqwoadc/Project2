@@ -7,6 +7,7 @@ import com.cskaoyan.utils.Page;
 import com.cskaoyan.utils.RoomVO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RoomService {
 
@@ -32,4 +33,6 @@ public interface RoomService {
     int updateRoomService(Room room);
 
     int aJXService(String roomNumber);
+
+    List<Room> getAllRoom();
 }

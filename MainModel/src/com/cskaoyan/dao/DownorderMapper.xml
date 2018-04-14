@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.dao.DownorderMapper">
+
+
+    <select id="getAttributeDetailsNameById" parameterType="int" resultType="string">
+        SELECT attributeDetailsName from downorders where id = #{id}
+    </select>
+
+    <select id="getAttributeByfar_id" resultType="com.cskaoyan.utils.Downorder" parameterType="int">
+        select * from downorders where far_id = #{far_id};
+    </select>
+</mapper>
