@@ -5,24 +5,53 @@ import java.util.Date;
 public class StayRegister {
 
     private int srId;
+    private String passengerName;
     private int predetermineId;
     private int changingRoomNumber;
     private float changRoomMoney;
     private Date changRoomTime;
     private Date registerTime;
     private float sumConst;
+    private String isBill;
+    private String lvkeleixing;
 
     @Override
     public String toString() {
         return "StayRegister{" +
                 "srId=" + srId +
+                ", passengerName='" + passengerName + '\'' +
                 ", predetermineId=" + predetermineId +
                 ", changingRoomNumber=" + changingRoomNumber +
                 ", changRoomMoney=" + changRoomMoney +
                 ", changRoomTime=" + changRoomTime +
                 ", registerTime=" + registerTime +
                 ", sumConst=" + sumConst +
+                ", isBill='" + isBill + '\'' +
+                ", lvkeleixing='" + lvkeleixing + '\'' +
                 '}';
+    }
+
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
+    }
+
+    public String getLvkeleixing() {
+        return lvkeleixing;
+    }
+
+    public void setLvkeleixing(String lvkeleixing) {
+        this.lvkeleixing = lvkeleixing;
+    }
+    public String getIsBill() {
+        return isBill;
+    }
+
+    public void setIsBill(String isBill) {
+        this.isBill = isBill;
     }
 
     public int getSrId() {

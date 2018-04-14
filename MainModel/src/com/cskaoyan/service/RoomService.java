@@ -35,4 +35,6 @@ public interface RoomService {
     int aJXService(String roomNumber);
 
     List<Room> getAllRoom();
+
+    List<Room> getRoomByRoomLevel(String guestRoomLevelID);
 }

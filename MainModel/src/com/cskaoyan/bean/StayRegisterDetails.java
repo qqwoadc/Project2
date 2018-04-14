@@ -20,7 +20,18 @@ public class StayRegisterDetails {
     private float sumConst;
     private int isBillID;
     private int stayregisterdetailsId;
+//以下是arrangeroom页面提交的数据，新生成一条住宿登记记录
+    //tuanDuiID
+//LvKeLeiXingId
+//roomName房间号
 
+//registerTime
+//rentOutTypeID
+//passengerTypeID
+//stayNumber住店天数/小时
+//deposit押金
+//billUnitID
+//depositPayWayID
     @Override
     public String toString() {
         return "StayRegisterDetails{" +

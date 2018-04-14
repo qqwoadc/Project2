@@ -305,5 +305,40 @@ public class RoomServiceImpl implements RoomService {
         return dao.getAllRoom();
     }
 
+    @Override
+    public List<Room> getRoomByRoomLevel(String guestRoomLevelID) {
+
+        int i = Integer.parseInt(guestRoomLevelID);
+        String txt = "";
+        switch (i) {
+            case 8:
+                txt = "单人普通房";
+                break;
+            case 9:
+                txt = "单人标准间";
+                break;
+            case 10:
+                txt = "二人普通房";
+                break;
+            case 11:
+                txt = "二人标准间";
+                break;
+            case 12:
+                txt = "豪华间";
+                break;
+            case 13:
+                txt = "会议室";
+                break;
+            case 14:
+                txt = "总统套房";
+                break;
+            case 0:
+                txt = "%%";
+                break;
+        }
+        List<Room> roomByRoomLevel = dao.getRoomByRoomLevel(txt);
+        return roomByRoomLevel;
+    }
+
 
 }

@@ -194,4 +194,9 @@
     <select id="getAllRoom" resultType="room">
         SELECT * from room;
     </select>
+    
+    <select id="getRoomByRoomLevel" parameterType="string" resultType="room">
+        select * from room where guestRoomLevelName LIKE #{roomLevel};
+    </select>
+    
 </mapper>

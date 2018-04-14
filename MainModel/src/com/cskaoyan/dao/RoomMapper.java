@@ -39,7 +39,10 @@ public interface RoomMapper {
 
     int exactFindByRoomNumber(String roomNumber);
 
-
+//查询所有房间数据
     List<Room> getAllRoom();
+
+//    根据房间级别查询房间
+    public List<Room> getRoomByRoomLevel(String roomLevel);
 
 }
