@@ -31,7 +31,7 @@ public interface ReceiveTargetService {
     /*
      * 删除对象团体
      * */
-    int deleteReceiveTargetByIds(int[] ids);
+    Integer deleteReceiveTargetByIds(int[] id);
 
     int deleteReceiveTargetById(int id);
 

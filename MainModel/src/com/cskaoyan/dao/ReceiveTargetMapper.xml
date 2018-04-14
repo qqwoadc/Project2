@@ -12,7 +12,7 @@
         WHERE teamName LIKE #{teamName}
         OR principal LIKE #{principal}
         OR teamCode LIKE #{teamCode}
-        OR contactPhoneNUmber LIKE #{contactPhoneNUmber};
+        OR contactPhoneNUmber LIKE #{contactPhoneNUmber} LIMIT #{limit} OFFSET #{offset}
 
     </select>
 
@@ -34,10 +34,12 @@
     </select>
 
     <!--添加对象团体-->
-    <insert id="addReceiveTarget" parameterType="receivetarget">
-        INSERT INTO receivetarget (id,targetTypeName,teamCode,teamName,principal,registerTime,contactPhoneNUmber)
-        VALUES (#{id},#{targetTypeName},#{teamCode},#{teamName},#{principal},#{registerTime},#{contactPhoneNUmber});
+    <insert id="addReceiveTarget" parameterType="com.cskaoyan.bean.ReceiveTarget">
+        INSERT INTO receivetarget VALUES (NULL,#{receiveTargetTypeName},#{teamCode},#{teamName},#{principal},#{registerTime},#{contactPhoneNUmber} )
     </insert>
+
+    <!--INSERT INTO receivetarget (id,targetTypeName,teamCode,teamName,principal,registerTime,contactPhoneNUmber)
+    VALUES (#{id},#{targetTypeName},#{teamCode},#{teamName},#{principal},#{registerTime},#{contactPhoneNUmber});-->
 
     <!--修改团体信息-->
     <!--<update id="updateRtByTeamCode" parameterType="Integer">-->
@@ -89,7 +91,7 @@
     </select>
 
     <!--批量删除对象-->
-    <select id="deleteReceiveTargetByIds" parameterType="Integer" resultType="com.cskaoyan.bean.ReceiveTarget">
+    <select id="deleteReceiveTargetByIds" resultType="Integer" >
         DELETE FROM receivetarget
         <where>
             <foreach collection="array" item="id">

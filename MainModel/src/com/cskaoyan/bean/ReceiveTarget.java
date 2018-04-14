@@ -10,14 +10,14 @@ public class ReceiveTarget {
     String teamName;
     String principal;
     String contactPhoneNUmber;
-    Date registerTime;
+    String registerTime;
     String receiveTargetTypeName;
 
     ReceiveTargetType receiveTargetType;
 
 
     public ReceiveTarget(int id, int targetTypeID, String targetTypeName, String teamCode, String teamName,
-                         String principal, String contactPhoneNUmber, Date registerTime, String
+                         String principal, String contactPhoneNUmber, String registerTime, String
                                  receiveTargetTypeName, ReceiveTargetType receiveTargetType) {
         this.id = id;
         this.targetTypeID = targetTypeID;
@@ -90,11 +90,11 @@ public class ReceiveTarget {
         this.contactPhoneNUmber = contactPhoneNUmber;
     }
 
-    public Date getRegisterTime() {
+    public String getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
     }
 

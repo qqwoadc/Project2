@@ -4,17 +4,17 @@ public class ReceiveTargetVO {
 
     private int limit;
     private int offset;
-    private String textName;
+//    private String textName;
     private String teamName;
     private String principal;
     private String contactPhoneNUmber;
 
 
-    public ReceiveTargetVO(int limit, int offset, String textName, String teamName, String teamCode, String
+    public ReceiveTargetVO(int limit, int offset, String teamName, String teamCode, String
             principal, String contactPhoneNUmber) {
         this.limit = limit;
         this.offset = offset;
-        this.textName = textName;
+//        this.textName = textName;
         this.teamName = teamName;
         this.teamCode = teamCode;
         this.principal = principal;
@@ -80,11 +80,11 @@ public class ReceiveTargetVO {
         this.offset = offset;
     }
 
-    public String getTextName() {
+  /*  public String getTextName() {
         return textName;
     }
 
     public void setTextName(String textName) {
         this.textName = textName;
-    }
+    }*/
 }

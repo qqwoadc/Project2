@@ -80,11 +80,19 @@ public class BaijieTest {
     @Test
     public void test5(){
 
-
-        Page<ReceiveTarget> page = service.allReceiveTargetPage(1, 2);
+/*
+        Page<ReceiveTarget> page = service.deleteReceiveTargetByIds();
 
         System.out.println(page+"====================================================================================" +
-                "============================================================");
+                "============================================================");*/
+
+
+        int [] id={18};
+
+        Integer  i = service.deleteReceiveTargetByIds(id);
+        System.out.println(i+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+
     }
 
 

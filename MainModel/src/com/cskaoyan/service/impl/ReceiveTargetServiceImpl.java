@@ -37,15 +37,16 @@ public class ReceiveTargetServiceImpl implements ReceiveTargetService {
     }
 
     @Override
-    public int deleteReceiveTargetByIds(int[] ids) {
-        return dao.deleteReceiveTargetByIds(ids);
+    public Integer deleteReceiveTargetByIds(int[] id) {
+
+        return dao.deleteReceiveTargetByIds(id);
+
     }
 
     @Override
     public int deleteReceiveTargetById(int id){
         return dao.deleteReceiveTargetById(id);
     }
-
     @Override
     public ReceiveTarget findReceiveTargetById(int id) {
         return dao.findReceiveTargetById(id);
@@ -98,16 +99,12 @@ public class ReceiveTargetServiceImpl implements ReceiveTargetService {
     public Page<ReceiveTarget> searchPartPage(String txtname, int currentPage, double limit) {
 
         int offset = (int) ((currentPage - 1) * limit);     //求出偏移量;
-
         int receiveTargetCount = dao.findReceiveTargetCount(); //得到总的房间-数量
-
         double totalPageDB = receiveTargetCount / limit;       //求出总页数
-
         int totalPage = (int) Math.ceil(totalPageDB);        //向上取整
 
         ReceiveTargetVO targetVO = new ReceiveTargetVO((int) limit,offset); //产生包装类
-
-        targetVO.setTextName("%"+txtname+"%");
+//        targetVO.setTextName("%"+txtname+"%");
         targetVO.setLimit((int) limit);
         targetVO.setOffset(offset);
         targetVO.setTeamName("%"+txtname+"%");
@@ -117,13 +114,10 @@ public class ReceiveTargetServiceImpl implements ReceiveTargetService {
         
 
         List<ReceiveTarget> receiveTargets = dao.findRtBlur(targetVO);//查数据库,查出链表
-
         Page<ReceiveTarget> targetPage = new Page<>(); //把所求出的信息放入page类中
 
         targetPage.setCurrentPage(currentPage);
-
         targetPage.setTotalPage(totalPage);
-
         targetPage.setResult(receiveTargets);
 
         return targetPage;
