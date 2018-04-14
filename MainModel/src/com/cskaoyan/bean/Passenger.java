@@ -1,7 +1,5 @@
 package com.cskaoyan.bean;
 
-import java.util.Date;
-
 public class Passenger {
     int id;
     //旅客姓名
@@ -38,6 +36,31 @@ public class Passenger {
     String contactPhoneNumber;
     //备注
     String remarks;
+
+
+//    public Passenger() {
+//    }
+//
+//    public Passenger(int id, String name, String genderName, String birthDate, String nationName, String licenceIssuingAuthorty, String profession, String educationDegreeID, String passengerLevelName, String papersValidity, String papersName, String papersNumber, String unitsOrAddress, String thingReasonID, String whereAreFrom, String whereToGo, String contactPhoneNumber, String remarks) {
+//        this.id = id;
+//        this.name = name;
+//        this.genderName = genderName;
+//        this.birthDate = birthDate;
+//        this.nationName = nationName;
+//        this.licenceIssuingAuthorty = licenceIssuingAuthorty;
+//        this.profession = profession;
+//        this.educationDegreeID = educationDegreeID;
+//        this.passengerLevelName = passengerLevelName;
+//        this.papersValidity = papersValidity;
+//        this.papersName = papersName;
+//        this.papersNumber = papersNumber;
+//        this.unitsOrAddress = unitsOrAddress;
+//        this.thingReasonID = thingReasonID;
+//        this.whereAreFrom = whereAreFrom;
+//        this.whereToGo = whereToGo;
+//        this.contactPhoneNumber = contactPhoneNumber;
+//        this.remarks = remarks;
+//    }
 
     public int getId() {
         return id;

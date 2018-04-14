@@ -10,7 +10,6 @@ public interface PassengerDownOrdersMapper {
     List<PassengerDownOrders> findCultureLevel();
     List<PassengerDownOrders> findPassengerLevel();
     List<PassengerDownOrders> findLicenseCategory();
-    List<PassengerDownOrders> findLicenseNumber();
     List<PassengerDownOrders> findReason();
 
 }

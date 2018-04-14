@@ -1,22 +1,22 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Passenger;
-import com.cskaoyan.bean.ReceiveTarget;
 import com.cskaoyan.dao.PassengerMapper;
 import com.cskaoyan.service.PassengerService;
-import com.cskaoyan.utils.Page;
+import com.cskaoyan.utils.PassengerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Service
-public class PassengerServiceImpl implements PassengerService{
+public class PassengerServiceImpl implements PassengerService {
     @Autowired
     PassengerMapper passengerMapper;
     @Override
-    public List selectPassengersList() {
-        return passengerMapper.findAllPassenger();
+    public ArrayList<Passenger> selectPassengersList(PassengerVO passengerVO) {
+
+        return passengerMapper.findAllPassenger(passengerVO);
     }
 
     @Override
@@ -35,8 +35,22 @@ public class PassengerServiceImpl implements PassengerService{
     }
 
     @Override
-    public List<Passenger> findPassengerByName(String name) {
-        return passengerMapper.findPassengerByName(name);
+    public ArrayList<Passenger> findPassengerByName(PassengerVO passengerVO) {
+        return passengerMapper.findPassengerByName(passengerVO);
     }
 
+    @Override
+    public int countAllPassenger() {
+        return passengerMapper.countAllPassenger();
+    }
+
+    @Override
+    public int coutAllPassengerByName(String txtname) {
+        return passengerMapper.countAllPassengerByName(txtname);
+    }
+
+    @Override
+    public Passenger findPassengerById(int id) {
+        return passengerMapper.findPassengerById(id);
+    }
 }

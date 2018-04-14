@@ -18,7 +18,7 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="user" value="root"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/project2"/>
-        <property name="password" value="123456"/>
+        <property name="password" value="111"/>
 
     </bean>
 
@@ -32,6 +32,11 @@
         <property name="basePackage" value="com.cskaoyan.dao"></property>
     </bean>
 
-
-
+    <bean  class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.cskaoyan.utils.MyDateConverter"/>
+            </set>
+        </property>
+    </bean>
 </beans>

@@ -2,7 +2,8 @@ package com.cskaoyan.bean;
 
 public class PassengerDownOrders {
     int id;
-    String order;
+    int far_id;
+    String attributeDetailsName;
 
     public int getId() {
         return id;
@@ -12,19 +13,27 @@ public class PassengerDownOrders {
         this.id = id;
     }
 
-    public String getOrder() {
-        return order;
+    public int getFar_id() {
+        return far_id;
     }
 
-    public void setOrder(String order) {
-        this.order = order;
+    public void setFar_id(int far_id) {
+        this.far_id = far_id;
     }
 
+    public String getAttributeDetailsName() {
+        return attributeDetailsName;
+    }
+
+    public void setAttributeDetailsName(String attributeDetailsName) {
+        this.attributeDetailsName = attributeDetailsName;
+    }
     @Override
     public String toString() {
         return "PassengerDownOrders{" +
                 "id=" + id +
-                ", order='" + order + '\'' +
+                ", far_id=" + far_id +
+                ", attributeDetailsName='" + attributeDetailsName + '\'' +
                 '}';
     }
 }

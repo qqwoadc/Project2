@@ -22,9 +22,9 @@ public class HanhaominTest {
     @Test
     public void test(){
 
-        List<Passenger> a = dao.selectPassengersList();
-        ArrayList<Passenger> list = new ArrayList(a);
-        System.out.println("a="+list.toString());
+//        List<Passenger> a = dao.selectPassengersList();
+//        ArrayList<Passenger> list = new ArrayList(a);
+//        System.out.println("a="+list.toString());
     }
 
 }
