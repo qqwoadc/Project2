@@ -75,4 +75,13 @@ public interface PredetermineMapper {
 
     //根据id查找接待对象
     ReceiveTarget findTeamById(@Param("id") int id);
+
+    //根据Id查找预定信息
+    Predetermine findPredeterMSGById(@Param("id") String predetermineId);
+
+    Room findRoomByNumber2(@Param("roomNumber") String roomNumber);
+
+    int updateRoomByNumber(@Param("roomNumber") String roomNumber1);
+
+    int updatePredetermineStateById(@Param("predetermineId") String predetermineId);
 }

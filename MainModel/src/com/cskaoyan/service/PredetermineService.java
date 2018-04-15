@@ -67,4 +67,13 @@ public interface PredetermineService {
 
     //根据teamId查找receiveTarget
     ReceiveTarget findTeamById(int id);
+
+    //根据Id查找预定信息
+    Predetermine findPredeterMSGById(String predetermineId);
+
+    Room findRoomByNumber2(String roomNumber);
+
+    int updateRoomByNumber(String roomNumber1);
+
+    int updatePredetermineStateById(String predetermineId);
 }

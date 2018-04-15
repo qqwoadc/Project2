@@ -285,5 +285,36 @@ public class PredetermineServiceImpl implements PredetermineService {
         return teamById;
     }
 
+     //根据Id查找预定信息
+    @Override
+    public Predetermine findPredeterMSGById(String predetermineId) {
+
+        Predetermine predeterMSGById = dao.findPredeterMSGById(predetermineId);
+
+        return predeterMSGById;
+    }
+
+    @Override
+    public Room findRoomByNumber2(String roomNumber) {
+
+        Room roomByNumber2 = dao.findRoomByNumber2(roomNumber);
+        return roomByNumber2;
+    }
+
+    @Override
+    public int updateRoomByNumber(String roomNumber1) {
+
+        int i = dao.updateRoomByNumber(roomNumber1);
+        return i;
+    }
+
+
+    @Override
+    public int updatePredetermineStateById(String predetermineId) {
+
+        int id = dao.updatePredetermineStateById(predetermineId);
+        return id;
+    }
+
 
 }

@@ -128,11 +128,29 @@
 
     <!--改 将房间状态修改为预定状态-->
     <update id="updateRoomById" >
-        UPDATE room SET roomName="预定",roomStateID=4;
+        UPDATE room SET roomName="预定",roomStateID=4 WHERE id = #{roomId}
     </update>
     
     <!--查 根据id查找接待对象-->
     <select id="findTeamById" parameterType="int" resultType="com.cskaoyan.bean.ReceiveTarget">
         SELECT * FROM receivetarget WHERE id=#{id}
     </select>
+
+    <!--查 根据Id查找预定信息-->
+    <select id="findPredeterMSGById" resultType="predetermine">
+        SELECT * FROM predetermine WHERE predetermineId = #{id}
+    </select>
+
+    <!--查 根据roomNumber查找房间-->
+    <select id="findRoomByNumber2" resultType="room">
+        SELECT * FROM room WHERE roomNumber=#{roomNumber}
+    </select>
+
+    <update id="updateRoomByNumber">
+        UPDATE room SET roomName="空房间",roomStateID=1 WHERE roomNumber = #{roomNumber}
+    </update>
+    
+    <update id="updatePredetermineStateById">
+        UPDATE predetermine SET predetermineStateName="已安排" WHERE predetermineId=#{predetermineId}
+    </update>
 </mapper>

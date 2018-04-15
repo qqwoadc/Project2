@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PredetermineController {
@@ -195,7 +196,7 @@ public class PredetermineController {
         //选中对象的id
         int id = Integer.parseInt(request.getParameter("id"));
         //passengerI区分团队和旅客
-        int passengerId = Integer.parseInt(request.getParameter("type"));
+        int type = Integer.parseInt(request.getParameter("type"));
         //房间id用于查找房间
         String[] roomIdShuZu = request.getParameter("roomIdShuZu").split(",");
         //总共需添加的信息个数
@@ -217,7 +218,7 @@ public class PredetermineController {
 
 
         //根据passengerId判断输入类型
-        if(passengerId==1){
+        if(type==1){
             //预定信息为散客类型
             //需要向数据库中传入的数据有
             // passengerId;
@@ -282,7 +283,7 @@ public class PredetermineController {
                 request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
             }
 
-        }else if (passengerId==0){
+        }else if (type==0){
             //预定信息为团队类型
             //需要向数据库中传入的数据有
             // passengerId = 0;
@@ -357,9 +358,320 @@ public class PredetermineController {
     }
 
     @RequestMapping(path = "Predetermine/toupdate.do",method = {RequestMethod.GET,RequestMethod.POST})
-    public String toupdate(HttpServletRequest request,HttpServletResponse response){
+    public String toupdate(HttpServletRequest request,HttpServletResponse response,Model model){
 
+        String predetermineId = request.getParameter("id");
+
+        //支付方式下拉菜单
+        List<ListOne> listPay = predetermineService.findListPay();
+        model.addAttribute("listOne",listPay);
+
+
+        //根据Id查找预订信息
+        Predetermine predeterMSGById = predetermineService.findPredeterMSGById(predetermineId);
+
+        //根据passengerId判断是团队还是旅客
+        int passengerId = predeterMSGById.getPassengerId();
+
+        if (passengerId==0){
+            //为团队
+
+            //回写predetermineId
+            model.addAttribute("predetermineId",predetermineId);
+
+            //回写id
+            model.addAttribute("id",passengerId);
+
+            //回写type
+            model.addAttribute("type","0");
+
+            //回写接待对象名称
+            String receiveTeamName = predeterMSGById.getReceiveTeamName();
+            model.addAttribute("name",receiveTeamName);
+
+            //回写预定天数
+            int predetermineDay = predeterMSGById.getPredetermineDay();
+            model.addAttribute("predetermineDay",predetermineDay);
+
+            //回写押金
+            Float deposit = predeterMSGById.getDeposit();
+
+            System.out.println();
+            System.out.println(deposit);
+            System.out.println();
+            model.addAttribute("zhengShu",deposit);
+
+            //回写抵达时间
+            Date arriveTime = predeterMSGById.getArriveTime();
+            model.addAttribute("arriveTime",arriveTime);
+
+            //回写房间表格
+            String roomNumber = predeterMSGById.getRoomNumber();
+            Room roomByNumber = predetermineService.findRoomByNumber2(roomNumber);
+            model.addAttribute("roomSetPolist",roomByNumber);
+
+            //回写roomNumber
+            model.addAttribute("roomNumber",roomNumber);
+        }else {
+            //为散客
+            //回写predetermineId
+            model.addAttribute("predetermineId",predetermineId);
+
+            //回写id
+            model.addAttribute("id",passengerId);
+
+            //回写type
+            model.addAttribute("type","1");
+
+            //回写接待对象名称
+            String passengerName = predeterMSGById.getPassengerName();
+            model.addAttribute("name", passengerName);
+
+            //回写预定天数
+            int predetermineDay = predeterMSGById.getPredetermineDay();
+            model.addAttribute("predetermineDay",predetermineDay);
+
+            //回写押金
+            Float deposit = predeterMSGById.getDeposit();
+            model.addAttribute("zhengShu",deposit);
+
+            //回写抵达时间
+            Date arriveTime = predeterMSGById.getArriveTime();
+            model.addAttribute("arriveTime",arriveTime);
+
+            //回写房间表格
+            String roomNumber = predeterMSGById.getRoomNumber();
+            Room roomByNumber = predetermineService.findRoomByNumber2(roomNumber);
+            model.addAttribute("roomSetPolist",roomByNumber);
+
+            //回写roomNumber
+            model.addAttribute("roomNumber",roomNumber);
+        }
 
         return "/WEB-INF/jsp/predetermine/update.jsp";
+    }
+
+    @RequestMapping(path = "Predetermine/update.do",method = {RequestMethod.GET,RequestMethod.POST})
+    public void update(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+        //修改数据库中的数据
+
+        //选中predetermineId
+        System.out.println();
+        System.out.println(request.getParameter("predetermineId"));
+        System.out.println("哈哈");
+        int predetermineId = Integer.parseInt(request.getParameter("predetermineId"));
+
+        //选中对象的id
+        int id = Integer.parseInt(request.getParameter("id"));
+        //passengerI区分团队和旅客
+        int type = Integer.parseInt(request.getParameter("type"));
+
+        System.out.println();
+        System.out.println(type);
+        System.out.println("呵呵");
+
+        //房间id用于查找房间
+        String[] roomIdShuZu = request.getParameter("roomIdShuZu").split(",");
+        //总共需添加的信息个数
+        int length = roomIdShuZu.length;
+
+        //得到公用的属性
+        String arriveTimeString = request.getParameter("arriveTime");
+
+        MyDateConverter myDateConverter = new MyDateConverter();
+        Date arriveTime = myDateConverter.convert(arriveTimeString);
+
+        String deposite = request.getParameter("deposite");
+
+        int predetermineDay = Integer.parseInt(request.getParameter("predetermineDay"));
+
+        //团队名称或旅客姓名
+        String commodityName = request.getParameter("commodityName");
+
+        //得到修改前的roomNumber
+        String roomNumber1 = request.getParameter("roomNumber");
+
+
+        //根据passengerId判断输入类型
+        if(type==1){
+
+            //根据信息个数添加
+            for (int i = 0; i < length; i++ ){
+                Predetermine predetermine = new Predetermine();
+                //设置predetermineID
+                predetermine.setPredetermineId(predetermineId);
+                //设置passengerId
+                predetermine.setPassengerId(id);
+
+                //设置roomNumber
+                int roomId = Integer.parseInt(roomIdShuZu[i]);
+                Room roomById = predetermineService.findRoomById(roomId);
+                String roomNumber = roomById.getRoomNumber();
+                predetermine.setRoomNumber(roomNumber);
+
+                //设置guestRoomLevelName
+                String guestRoomLevelName = roomById.getGuestRoomLevelName();
+                predetermine.setGuestRoomLevelName(guestRoomLevelName);
+
+                //设置arriveTime
+                predetermine.setArriveTime(arriveTime);
+
+                //设置deposite
+                predetermine.setDeposit(Float.valueOf(deposite));
+
+                //设置predetermineDay
+                predetermine.setPredetermineDay(predetermineDay);
+
+                //设置predetermineStateName
+                predetermine.setPredetermineStateName("未安排");
+
+                //设置receiveTargetTypeName
+                predetermine.setReceiveTargetTypeName("散客");
+
+                //设置passengerName
+                predetermine.setPassengerName(commodityName);
+
+                //设置passengerContactPhoneNumber
+                Passenger passengerById = predetermineService.findPassengerById(id);
+                System.out.println();
+                System.out.println(id);
+                System.out.println();
+                String contactPhoneNumber = passengerById.getContactPhoneNumber();
+                predetermine.setPassengerContactPhoneNumber(contactPhoneNumber);
+
+                //将信息加入到数据库
+                int i1 = predetermineService.updatePredetermineMSG(predetermine);
+                System.out.println(i1);
+
+                //将预定的房间设置为预定状态
+                predetermineService.updateRoomById(roomId);
+
+                //判断房间是否发生了更改
+                if(!roomNumber1.equals(roomNumber)){
+                    //房间发生更改，将原房间状态变为空房间
+                    predetermineService.updateRoomByNumber(roomNumber1);
+
+                }
+
+                //跳转到list页面
+                request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
+            }
+
+        }else if (type==0){
+
+            for (int i = 0; i < length; i++){
+
+                Predetermine predetermine = new Predetermine();
+                //设置predetermineID
+                predetermine.setPredetermineId(predetermineId);
+                //设置passengerId
+                predetermine.setPassengerId(0);
+
+                //设置roomNumber
+                int roomId = Integer.parseInt(roomIdShuZu[i]);
+                Room roomById = predetermineService.findRoomById(roomId);
+                String roomNumber = roomById.getRoomNumber();
+                predetermine.setRoomNumber(roomNumber);
+
+                //设置guestRoomLevelName
+                String guestRoomLevelName = roomById.getGuestRoomLevelName();
+                predetermine.setGuestRoomLevelName(guestRoomLevelName);
+
+                //设置arriveTime
+                predetermine.setArriveTime(arriveTime);
+
+                //设置deposite
+                predetermine.setDeposit(Float.valueOf(deposite));
+
+                //设置predetermineDay
+                predetermine.setPredetermineDay(predetermineDay);
+
+                //设置predetermineStateName
+                predetermine.setPredetermineStateName("未安排");
+
+                //设置teamId
+                predetermine.setTeamId(id);
+
+                //设置receiveTeamName
+                ReceiveTarget teamById = predetermineService.findTeamById(id);
+                String teamName = teamById.getTeamName();
+                predetermine.setReceiveTeamName(teamName);
+
+                //设置receivePrincipal;
+                String principal = teamById.getPrincipal();
+                predetermine.setReceivePrincipal(principal);
+
+                //receiveContactPhoneNumber
+                String contactPhoneNUmber = teamById.getContactPhoneNUmber();
+                predetermine.setReceiveContactPhoneNumber(contactPhoneNUmber);
+
+                //将信息加入到数据库
+                int i1 = predetermineService.updatePredetermineMSG(predetermine);
+                System.out.println(i1);
+
+                //判断房间是否发生了更改
+                if(!roomNumber1.equals(roomNumber)){
+                    //房间发生更改，将原房间状态变为空房间
+                    predetermineService.updateRoomByNumber(roomNumber1);
+
+                }
+
+                //将预定的房间设置为预定状态
+                predetermineService.updateRoomById(roomId);
+
+
+                //跳转到list页面
+                request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
+            }
+        }else {
+            response.getWriter().println("输入有误");
+        }
+    }
+
+    //删除功能
+    @RequestMapping(path = "Predetermine/delete.do",method = {RequestMethod.GET,RequestMethod.POST})
+    public void delete(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        String predetermineId = request.getParameter("id");
+
+        Predetermine predeterMSGById = predetermineService.findPredeterMSGById(predetermineId);
+
+        String predetermineStateName = predeterMSGById.getPredetermineStateName();
+
+        String roomNumber = predeterMSGById.getRoomNumber();
+
+
+        int i = predetermineService.deletePredetermineMSG(predeterMSGById);
+
+        if ("未安排".equals(predetermineStateName)){
+            //将房间设为空房间
+            predetermineService.updateRoomByNumber(roomNumber);
+        }
+        request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
+    }
+
+    @RequestMapping(path = "/Predetermine/arrangeRoom.do",method = {RequestMethod.GET,RequestMethod.POST})
+    public void arrangeRoom(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        String predetermineId = request.getParameter("id");
+
+        Predetermine predeterMSGById = predetermineService.findPredeterMSGById(predetermineId);
+
+        //更新predetermine状态
+        predetermineService.updatePredetermineStateById(predetermineId);
+
+        String tiaoZhuang = request.getParameter("tiaoZhuang");
+
+        //判断是否跳转到住宿登记页面
+        if (tiaoZhuang=="1"){
+            //跳转到住宿登记页面
+
+
+        }else if (tiaoZhuang=="2"){
+            //跳转到list页面
+            request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
+
+        }
+
     }
 }

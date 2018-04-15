@@ -91,7 +91,9 @@
  
   <body>
   <div class="container" style="height:630px;overflow-x:auto;border: solid; border-color: #DDDDDD;">
-    
+
+    <input id="predetermineId" type="hidden" value="${predetermineId}">
+    <input id="roomNumber" type="hidden" value="${roomNumber}">
     <input id="lvkeorteamId" type="hidden" value="${id}" >  <!-- 是团队还是旅客的ID -->
     <input id="teamId" type="hidden" value="${type}" >  <!-- 是团队还是旅客 -->
     <input id="pangduan" type="hidden" value="${pangduan}" >  <!-- 是团队还是旅客 -->
@@ -130,7 +132,7 @@
         <div class="span2">
            <label>预订天数：</label>
            <input id="predetermineDayId" name="predetermineDay" class="widthone" 
-           style="height: 26px;"  type="text" onchange="onchangeOne()" value="${listList[0].predetermineDay}">
+           style="height: 26px;"  type="text" onchange="onchangeOne()" value="${predetermineDay}">
            <div id="divOne" hidden>
 	          <label class="yansered" style="margin-top:12px;">*</label>
 	       </div>
@@ -139,7 +141,7 @@
            <label>押金：</label>
            <div class="input-prepend">
 			  <span class="add-on" style="float:left;height: 15px;">&yen;</span>
-		      <input id="depositId" name="deposit" onchange="onchangeOne()"
+		      <input id="depositId" name="deposite" onchange="onchangeOne()"
 		      style="width:78%;height: 25px; float:left;" type="text" value="${zhengShu}">
 		      <div id="divTwo" hidden>
 	             <label class="yansered" style="margin-top:7px;">*</label>
@@ -150,7 +152,7 @@
            <label>支付方式</label>
            <select name="payWayID" style="height:26px;width:100%;"> 
 		            <c:forEach items="${listOne}" var="item">
-			          <option value="${item.far_id}" <c:if test="${item.far_id==listList[0].payWayID}" >selected="selected"</c:if>>
+			          <option value="${item.far_id}" <c:if test="${item.far_id==1}" >selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
 			        </c:forEach> 
@@ -159,7 +161,7 @@
          <div class="span3">
            <label>抵达时间：</label>
           <input id="arriveTimeId" name="arriveTime" style="height:26px;float:left;" id="date" class="Wdate" type="text" onchange="onchangeOne()"
-		       onFocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{\'%y-%M-%d\'}',onpicked:pickedFunc})" value="${listList[0].arriveTime}"/>
+		       onFocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{\'%y-%M-%d\'}',onpicked:pickedFunc})" value="${arriveTime}"/>
           <div id="divThree" hidden>
 	          <label class="yansered" style="margin-top:12px;">*</label>
 	      </div>
@@ -184,15 +186,13 @@
 	         
 	      </thead>
 	      <tbody id="tbodyOne">
-	        <c:forEach items="${roomSetPolist}" var="item">
 		        <tr>
-		          <td><input type="checkbox" name="idOne" value="${item.id}"></td>
-		          <td>${item.roomNumber}</td>
-		          <td>${item.guestRoomLevelName}</td>
-		          <td>${item.roomAmount}</td>
-		          <td>${item.standardPriceDay}</td>
+		          <td><input type="checkbox" name="idOne" value="${roomSetPolist.id}"></td>
+		          <td>${roomSetPolist.roomNumber}</td>
+		          <td>${roomSetPolist.guestRoomLevelName}</td>
+		          <td>${roomSetPolist.roomAmount}</td>
+		          <td>${roomSetPolist.standardPriceDay}</td>
 		        </tr>
-	        </c:forEach>
 	      </tbody>
 	    </table>
     </div>
@@ -328,7 +328,7 @@
       var roomAmount=[];
       var roomPrice=[]; 
       $('#tbodyOne').empty();
-	  $('input[name="idTwo"]:checked').each(function(){             // 遍历获取input被checked的
+	  $('input[name="idTwo"]:checked').each(function(){            // 遍历获取input被checked的
 	   	chk_value.push($(this).val());                             // 获取选中的ID
 	    roomIdShuZu=chk_value;
 	    selectedIndex=this.parentNode.parentNode.rowIndex;
@@ -340,7 +340,7 @@
    	 for(var i=0;i<chk_value.length;i++){
         var tr = tableOne.insertRow(-1);            // FireFox必须使用-1这个参数
        
-        var tdcheckbox = tr.insertCell(-1);      // Table 有多少列就添加多少个这个
+        var tdcheckbox = tr.insertCell(-1);         // Table 有多少列就添加多少个这个
         var tdroomNumber = tr.insertCell(-1);
         var tdguestRoomLevelName = tr.insertCell(-1);
         var tdroomAmount = tr.insertCell(-1);
@@ -392,9 +392,9 @@
      } 
      var id= document.getElementById("lvkeorteamId").value;
      var teamId= document.getElementById("teamId").value;
-     var pangduan=document.getElementById("pangduan").value;
-     form1.action="${ctx}/Predetermine/add.do?id="+id+"&type="+teamId+"&roomIdShuZu="
-     +roomIdShuZu+"&pangduan="+pangduan;
+     var predetermineId=document.getElementById("predetermineId").value;
+     form1.action="${ctx}/Predetermine/update.do?id="+id+"&type="+teamId+"&roomIdShuZu="
+     +roomIdShuZu+"&predetermineId="+predetermineId;
      
      form1.submit(); 
    }
