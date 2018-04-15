@@ -225,7 +225,7 @@
 		        <label>出租方式：</label>
 		        <select name="rentOutTypeID" style="width:100%;height:27px;">
 		            <c:forEach items="${listRentOutType}" var="item">
-			          <option value="${item.far_id}" <c:if test="${item.far_id==26}">selected="selected"</c:if>>
+			          <option value="${item.attributeDetailsName}" <c:if test="${item.id==25}">selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
 			        </c:forEach> 
@@ -235,7 +235,7 @@
 		        <label>旅客类别：</label>
 		         <select name="passengerTypeID" style="width:100%;height:27px;">
 		            <c:forEach items="${listPassengerType}" var="item">
-			          <option value="${item.far_id}" <c:if test="${item.far_id==29}">selected="selected"</c:if>>
+			          <option value="${item.attributeDetailsName}" <c:if test="${item.id==27}">selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
 			        </c:forEach> 
@@ -287,7 +287,7 @@
 		        <label>结账单位：</label>
 		         <select name="billUnitID" style="width:100%;height:27px;">
 		            <c:forEach items="${listBillUnit}" var="item">
-			          <option value="${item.far_id}" <c:if test="${item.far_id==27}">selected="selected"</c:if>>
+			          <option value="${item.attributeDetailsName}" <c:if test="${item.id==29}">selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
 			        </c:forEach> 
@@ -297,7 +297,7 @@
 		        <label>支付方式：</label>
 		        <select name="depositPayWayID" style="width:100%;height:27px;">
 		            <c:forEach items="${listPayWay}" var="item">
-			          <option value="${item.far_id}" <c:if test="${item.far_id==21}">selected="selected"</c:if>>
+			          <option value="${item.attributeDetailsName}" <c:if test="${item.id==32}">selected="selected"</c:if>>
 			            ${item.attributeDetailsName}
 			          </option>
 			        </c:forEach> 

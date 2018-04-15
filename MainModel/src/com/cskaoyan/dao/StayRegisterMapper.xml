@@ -11,13 +11,13 @@
         SELECT * from stayregister left OUTER join predetermine on
         stayregister.predetermineId=predetermine.predetermineId
         <where>
-            <if test="txt != null and txt!=''">
-                and roomNumber = #{txt}
+            <if test="roomNumber != null and roomNumber!=''">
+                and roomNumber LIKE #{roomNumber}
             </if>
-            <if test="isBill != null">
-                and isBill=#{isbill}
+            <if test="isBill != null and isBill!=''">
+                and isBill=#{isBill}
             </if>
-            <if test="lvkeleixing != null">
+            <if test="lvkeleixing != null and lvkeleixing!=''">
                 and lvkeleixing = #{lvkeleixing}
             </if>
         </where>
@@ -27,19 +27,17 @@
     <select id="gettotalItems" resultType="int">
         SELECT COUNT(*) from stayregister left OUTER join predetermine on stayregister.predetermineId=predetermine.predetermineId
         <where>
-            <if test="txt != null and txt!=''">
-                and roomNumber = #{txt}
+            <if test="roomNumber != null and roomNumber!=''">
+                and roomNumber LIKE #{roomNumber}
             </if>
-            <if test="isBill != null">
-                and isBill=#{isbill}
+            <if test="isBill != null and isBill!=''">
+                and isBill = #{isBill}
             </if>
-            <if test="lvkeleixing != null">
-                and  lvkeleixing = #{lvkeleixing}
+            <if test="lvkeleixing != null and lvkeleixing!=''">
+                and lvkeleixing = #{lvkeleixing}
             </if>
     </where>
-
 </select>
-
 
     <update id="updateByPrimaryKeySelective" parameterType="stayRegister">
         <!--
@@ -83,4 +81,17 @@
     <insert id="addStayRegister" parameterType="stayRegister">
         INSERT into stayregister VALUES (null,#{predetermineId,jdbcType=INTEGER},#{passengerName,jdbcType=VARCHAR},#{changingRoomNumber,jdbcType=INTEGER},#{changRoomMoney,jdbcType=REAL},#{changRoomTime,jdbcType=TIMESTAMP},#{registerTime,jdbcType=TIMESTAMP},#{sumConst,jdbcType=REAL},#{isBill,jdbcType=VARCHAR},#{lvkeleixing,jdbcType=VARCHAR})
     </insert>
+
+    <select id="getAllMessage" parameterType="int" resultMap="srd">
+        SELECT * from stayregister left OUTER join predetermine on
+        stayregister.predetermineId=predetermine.predetermineId
+        where srId = #{srId}
+    </select>
+    
+    <resultMap id="srd" type="com.cskaoyan.bean.StayRegisterDetails">
+        <id column="srId" property="id"></id>
+        <result property="roomGuestRoomLevelName" column="guestRoomLevelName"></result>
+        <result property="predetermineReceiveTargeTypeName" column="receiveTargetTypeName"/>
+        <result property="passengerTypeName" column="lvkeleixing"/>
+    </resultMap>
 </mapper>

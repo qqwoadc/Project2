@@ -3,6 +3,7 @@ package com.cskaoyan.service.impl;
 import com.cskaoyan.bean.*;
 import com.cskaoyan.dao.FinancialstatisticsMapper;
 import com.cskaoyan.service.FinancialstatisticsService;
+import com.cskaoyan.service.StayRegisterService;
 import com.cskaoyan.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class FinancialstatisticsServiceImpl implements FinancialstatisticsServic
     @Autowired
     FinancialstatisticsMapper dao;
 
+
+    @Autowired
+    StayRegisterService stayRegisterService;
 
     @Override
     public int addFinancialstatistics(Financialstatistics financialstatistics) {
@@ -64,8 +68,20 @@ public class FinancialstatisticsServiceImpl implements FinancialstatisticsServic
 
             int stayregisterdetailsId = financialstatistic.getStayregisterdetailsId();
 //            查询其他表格，填充数据(调用其他的service方法)
+            StayRegisterDetails allMessage = stayRegisterService.getAllMessage(stayregisterdetailsId);
+            vo.setRoomNumber(allMessage.getRoomNumber());
+            vo.setPassengerName(allMessage.getPassengerName());
+
+            vo.setChangingRoomNumber(allMessage.getChangingRoomNumber());
+            vo.setChangRoomTime(allMessage.getChangRoomTime());
+
+            vo.setReceiveTeamName(allMessage.getPassengerTypeName());
+            vo.setRegisterTime(allMessage.getRegisterTime());
 
 
+
+            vo.setPayTime(financialstatistic.getPayTime());
+            vo.setSumConst(financialstatistic.getSumConst());
 //           加入vo列表
             financialstatisticsVOS.add(vo);
         }

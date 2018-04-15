@@ -1,4 +1,3 @@
-/*
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Consumption;
@@ -61,4 +60,3 @@ public class FinancialStatisticsController {
     }
 
 }
-*/
