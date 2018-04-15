@@ -41,7 +41,7 @@ public class StayRegisterController {
     RegisterService registerService;
 
 //    列表显示
-    @RequestMapping(path = "StayRegister/tolist",method ={RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(path = "/StayRegister/tolist",method ={RequestMethod.GET,RequestMethod.POST})
     public String stToList(Model model,String isBillID, String txtname, String currentPage, String LvKeLeiXingId){
 
 

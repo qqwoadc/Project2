@@ -667,7 +667,7 @@ public class PredetermineController {
     }
 
     @RequestMapping(path = "/Predetermine/arrangeRoom.do",method = {RequestMethod.GET,RequestMethod.POST})
-    public void arrangeRoom(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    public String arrangeRoom(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
         String predetermineId = request.getParameter("id");
 
@@ -704,21 +704,24 @@ public class PredetermineController {
             //添加
             predetermineService.addPredetermineMSGToStayRegister(stayRegister);
 
+
         }
 
         String tiaoZhuang = request.getParameter("tiaoZhuang");
 
         //判断是否跳转到住宿登记页面
-        if (tiaoZhuang=="1"){
+        if (tiaoZhuang.equals("1")){
             //跳转到住宿登记页面
-            request.getRequestDispatcher("/StayRegister/tolist.do").forward(request,response);
+            //request.getRequestDispatcher("Redirect:/StayRegister/tolist.do").forward(request,response);
 
-
-        }else if (tiaoZhuang=="2"){
+            return "/StayRegister/tolist.do";
+        }else if (tiaoZhuang.equals("2")){
             //跳转到list页面
-            request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
+            //request.getRequestDispatcher("/Predetermine/tolist.do").forward(request,response);
 
+            return "/Predetermine/tolist.do";
         }
 
+        return null;
     }
 }
