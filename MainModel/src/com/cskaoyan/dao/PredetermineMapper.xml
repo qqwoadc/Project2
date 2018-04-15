@@ -26,6 +26,9 @@
         #{receiveTeamName},
         #{receivePrincipal},
         #{receiveContactPhoneNumber})
+        <selectKey keyProperty="predetermineId" resultType="java.lang.Integer" order="AFTER">
+            SELECT last_insert_id()
+        </selectKey>
     </insert>
 
     <!--删 删除预定信息-->

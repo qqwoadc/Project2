@@ -8,7 +8,7 @@
     </select>
 
     <select id="findFinancialstatisticsByPayTime" resultType="financialstatistics">
-        SELECT * from financialstatistics where payTime between to_date(#{start},'yyyy/mm/dd') and to_date(#{end},'yyyy/mm/dd') limit #{limit} offset #{offset}
+        SELECT * from financialstatistics where payTime between #{start} and #{end} limit #{limit} offset #{offset}
     </select>
 
     <insert id="addFinancialstatistics" parameterType="financialstatistics">
@@ -19,24 +19,24 @@
         #{passengerNumber},
         #{consumptionMoney}
         #{sumConst},
-        );
+        )
     </insert>
 
-    <select id="getTotalItems">
-        SELECT COUNT * from financialstatistics;
+    <select id="getTotalItems" resultType="int">
+        SELECT COUNT(*) from financialstatistics
     </select>
 
 
     <select id="getzhuSuRenShu" resultType="int">
-        SELECT passengerNumber from financialstatistics;
+        SELECT passengerNumber from financialstatistics
     </select>
 
     <select id="getxiaoFeiJinE" resultType="float">
-        SELECT consumptionMoney from financialstatistics;
+        SELECT consumptionMoney from financialstatistics
     </select>
 
     <select id="getJieZhangJinE" resultType="float">
-        SELECT sumConst from financialstatistics;
+        SELECT sumConst from financialstatistics
     </select>
 
 </mapper>

@@ -1,6 +1,9 @@
 package com.cskaoyan.bean;
 
+
+
 public class Passenger {
+
     int id;
     //旅客姓名
     String name;
@@ -36,31 +39,49 @@ public class Passenger {
     String contactPhoneNumber;
     //备注
     String remarks;
+    //性别id
+    String genderID;
+    //民族id
+    String nationID;
+    //旅客等级id
+    String passengerLevelID;
+    //证件类型id
+    String papersID;
+    //文化程度
+    String educationDegree;
+    //事由
+    String thingReason;
 
 
-//    public Passenger() {
-//    }
-//
-//    public Passenger(int id, String name, String genderName, String birthDate, String nationName, String licenceIssuingAuthorty, String profession, String educationDegreeID, String passengerLevelName, String papersValidity, String papersName, String papersNumber, String unitsOrAddress, String thingReasonID, String whereAreFrom, String whereToGo, String contactPhoneNumber, String remarks) {
-//        this.id = id;
-//        this.name = name;
-//        this.genderName = genderName;
-//        this.birthDate = birthDate;
-//        this.nationName = nationName;
-//        this.licenceIssuingAuthorty = licenceIssuingAuthorty;
-//        this.profession = profession;
-//        this.educationDegreeID = educationDegreeID;
-//        this.passengerLevelName = passengerLevelName;
-//        this.papersValidity = papersValidity;
-//        this.papersName = papersName;
-//        this.papersNumber = papersNumber;
-//        this.unitsOrAddress = unitsOrAddress;
-//        this.thingReasonID = thingReasonID;
-//        this.whereAreFrom = whereAreFrom;
-//        this.whereToGo = whereToGo;
-//        this.contactPhoneNumber = contactPhoneNumber;
-//        this.remarks = remarks;
-//    }
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genderName='" + genderName + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", nationName='" + nationName + '\'' +
+                ", licenceIssuingAuthorty='" + licenceIssuingAuthorty + '\'' +
+                ", profession='" + profession + '\'' +
+                ", educationDegreeID='" + educationDegreeID + '\'' +
+                ", passengerLevelName='" + passengerLevelName + '\'' +
+                ", papersValidity='" + papersValidity + '\'' +
+                ", papersName='" + papersName + '\'' +
+                ", papersNumber='" + papersNumber + '\'' +
+                ", unitsOrAddress='" + unitsOrAddress + '\'' +
+                ", thingReasonID='" + thingReasonID + '\'' +
+                ", whereAreFrom='" + whereAreFrom + '\'' +
+                ", whereToGo='" + whereToGo + '\'' +
+                ", contactPhoneNumber='" + contactPhoneNumber + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", genderID='" + genderID + '\'' +
+                ", nationID='" + nationID + '\'' +
+                ", passengerLevelID='" + passengerLevelID + '\'' +
+                ", papersID='" + papersID + '\'' +
+                ", educationDegree='" + educationDegree + '\'' +
+                ", thingReason='" + thingReason + '\'' +
+                '}';
+    }
 
     public int getId() {
         return id;
@@ -206,27 +227,53 @@ public class Passenger {
         this.remarks = remarks;
     }
 
-    @Override
-    public String toString() {
-        return "Passenger{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", genderName='" + genderName + '\'' +
-                ", birthDate=" + birthDate +
-                ", nationName='" + nationName + '\'' +
-                ", licenceIssuingAuthorty='" + licenceIssuingAuthorty + '\'' +
-                ", profession='" + profession + '\'' +
-                ", educationDegreeID='" + educationDegreeID + '\'' +
-                ", passengerLevelName='" + passengerLevelName + '\'' +
-                ", papersValidity='" + papersValidity + '\'' +
-                ", papersName='" + papersName + '\'' +
-                ", papersNumber='" + papersNumber + '\'' +
-                ", unitsOrAddress='" + unitsOrAddress + '\'' +
-                ", thingReasonID='" + thingReasonID + '\'' +
-                ", whereAreFrom='" + whereAreFrom + '\'' +
-                ", whereToGo='" + whereToGo + '\'' +
-                ", contactPhoneNumber='" + contactPhoneNumber + '\'' +
-                ", remarks='" + remarks + '\'' +
-                '}';
+    public String getGenderID() {
+        return genderID;
     }
+
+    public void setGenderID(String genderID) {
+        this.genderID = genderID;
+    }
+
+    public String getNationID() {
+        return nationID;
+    }
+
+    public void setNationID(String nationID) {
+        this.nationID = nationID;
+    }
+
+    public String getPassengerLevelID() {
+        return passengerLevelID;
+    }
+
+    public void setPassengerLevelID(String passengerLevelID) {
+        this.passengerLevelID = passengerLevelID;
+    }
+
+    public String getPapersID() {
+        return papersID;
+    }
+
+    public void setPapersID(String papersID) {
+        this.papersID = papersID;
+    }
+
+    public String getEducationDegree() {
+        return educationDegree;
+    }
+
+    public void setEducationDegree(String educationDegree) {
+        this.educationDegree = educationDegree;
+    }
+
+    public String getThingReason() {
+        return thingReason;
+    }
+
+    public void setThingReason(String thingReason) {
+        this.thingReason = thingReason;
+    }
+
+
 }

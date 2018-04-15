@@ -110,7 +110,7 @@
 		    </form>
 		    <select id="isBillID" style="width:10%;height:27px; float:left;" onchange="selectChange()">
 	            <c:forEach items="${listOne}" var="item">
-		          <option value="${item.far_id}" <c:if test="${item.far_id==isBillID}">selected="selected"</c:if>>
+		          <option value="${item.id}" <c:if test="${item.id==34}">selected="selected"</c:if>>
 		            ${item.attributeDetailsName}
 		          </option>
 		        </c:forEach> 
@@ -166,7 +166,7 @@
 		    </form>
 		    <select id="teamIsBillId" style="width:8%;height:27px; float:left; margin-right:5px;" onchange="teamSelect()">
 	            <c:forEach items="${listOne}" var="item">
-		          <option value="${item.far_id}" <c:if test="${item.far_id==isBillID}">selected="selected"</c:if>>
+		          <option value="${item.id}" <c:if test="${item.id==34}">selected="selected"</c:if>>
 		            ${item.attributeDetailsName}
 		          </option>
 		        </c:forEach> 
@@ -388,7 +388,7 @@
 		   alert("登记只能根据一个房间登记");
 		}else{
 		   parent.document.getElementById("Mainid").src='${ctx}/StayRegister/toregister.do?id='+chk_value+
-		   '&roomNumber='+roomNumber+'&LvKeLeiXingId='+55;
+		   '&roomNumber='+roomNumber+'&LvKeLeiXingId='+36;
 		}
 	}else{
 	  alert("请选择一条房间进行登记");
@@ -417,7 +417,7 @@
 		   alert("登记只能根据一个房间登记");
 		}else{
 		   parent.document.getElementById("Mainid").src='${ctx}/StayRegister/toregister.do?id='+chk_value+
-		   '&roomNumber='+roomNumber+'&LvKeLeiXingId='+56;
+		   '&roomNumber='+roomNumber+'&LvKeLeiXingId='+37;
 		}
 	}else{
 	  alert("请选择一条房间进行登记");
@@ -432,14 +432,14 @@
    }
    
    function arrangefunction(){
-     parent.document.getElementById('Mainid').src='${ctx}/StayRegister/toarrangeroom.do?LvKeLeiXingId='+55;
+     parent.document.getElementById('Mainid').src='${ctx}/StayRegister/toarrangeroom.do?LvKeLeiXingId='+36;
    }
    
    function teamArrangefunction(){
      var tuanDuiID=document.getElementById("tuanDuiId").value;
      if(tuanDuiID!=""){
         parent.document.getElementById('Mainid').src='${ctx}/StayRegister/toarrangeroom.do?tuanDuiID='+tuanDuiID+
-        '&LvKeLeiXingId='+56;
+        '&LvKeLeiXingId='+37;
      }else{
         alert("请选择对象再安排房间！");
      }
@@ -467,7 +467,7 @@
 		   alert("只能选择一个房间进行换房哦");
 		}else{
 		   parent.document.getElementById('Mainid').src='${ctx}/StayRegister/tochangroom.do?id='+
-		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+55;
+		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+36;
 		}
 	}else{
 	  alert("请选择一条数据进行换房");
@@ -495,7 +495,7 @@
 		   alert("只能选择一个房间进行换房哦");
 		}else{
 		   parent.document.getElementById('Mainid').src='${ctx}/StayRegister/tochangroom.do?id='+
-		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+56;
+		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+37;
 		}
 	}else{
 	  alert("请选择一条数据进行换房");
@@ -519,7 +519,7 @@
 		   alert("只能选择一个房间查看押金记录哦");
 		}else{
 		   parent.document.getElementById('Mainid').src='${ctx}/StayRegister/todeposit.do?id='+
-		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+55;
+		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+36;
 		}
 	}else{
 	  alert("请选择一条数据进行查看押金记录");
@@ -541,7 +541,7 @@
 		   alert("只能选择一个房间查看押金记录哦");
 		}else{
 		   parent.document.getElementById('Mainid').src='${ctx}/StayRegister/todeposit.do?id='+
-		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+56;
+		   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+37;
 		}
 	}else{
 	  alert("请选择一条数据进行查看押金记录");
@@ -572,7 +572,7 @@
 			   alert("请先登记");
 			}else{
 			   parent.document.getElementById('Mainid').src='${ctx}/StayRegister/toconsumption.do?id='+
-			   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+55+'&roomNumber='+roomNumber+'&isBillID='+TOF;
+			   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+36+'&roomNumber='+roomNumber+'&isBillID='+TOF;
 		   }
 		}
 	}else{
@@ -602,7 +602,7 @@
 			   alert("请先登记");
 			}else{
 			   parent.document.getElementById('Mainid').src='${ctx}/StayRegister/toconsumption.do?id='+
-			   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+56+'&roomNumber='+roomNumber+'&isBillID='+TOF;
+			   chk_value+'&lvKeName='+lvKeName+'&LvKeLeiXingId='+37+'&roomNumber='+roomNumber+'&isBillID='+TOF;
 			}
 		}
 	}else{
@@ -755,9 +755,9 @@
   }
   
   
- if(${LvKeLeiXingId==55}){
+ if(${LvKeLeiXingId==36}){
     $('#oneid').tab('show');
-  }else if(${LvKeLeiXingId==56}){
+  }else if(${LvKeLeiXingId==37}){
     $('#twoid').tab('show');
   } 
 
@@ -766,14 +766,14 @@
   function selectChange(){
     var isBillID=document.getElementById("isBillID").value;
     parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?isBillID='+isBillID+
-    '&LvKeLeiXingId='+55;
+    '&LvKeLeiXingId='+36;
   }
   
   
   function selectfunction(){
     var isBillID=document.getElementById("isBillID").value;
     var txtname=document.getElementById("txtnameid").value;
-    parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?LvKeLeiXingId='+55+
+    parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?LvKeLeiXingId='+36+
     '&isBillID='+isBillID+"&txtname="+txtname;
   }
   
@@ -787,7 +787,7 @@
   	var principalId=document.getElementById("principalId").value;
   	var contactPhoneNUmberId=document.getElementById("contactPhoneNUmberId").value;
   	var registerTimeId=document.getElementById("registerTimeId").value;
-    parent.document.getElementById("Mainid").src='${ctx}/StayRegister/toteamlist.do?LvKeLeiXingId='+56+
+    parent.document.getElementById("Mainid").src='${ctx}/StayRegister/toteamlist.do?LvKeLeiXingId='+37+
     '&isBillID='+isBillID+"&txtname="+txtname+"&tuanDuiID="+tuanDuiID+"&teamNameId="+teamNameId
     +"&teamCodeId="+teamCodeId+"&principalId="+principalId+
     "&contactPhoneNUmberId="+contactPhoneNUmberId+"&registerTimeId="+registerTimeId;
@@ -795,10 +795,10 @@
   
   
   function teamfunction(){
-     parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?LvKeLeiXingId='+56;
+     parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?LvKeLeiXingId='+37;
   }
    function lvKefunction(){
-     parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?LvKeLeiXingId='+55;
+     parent.document.getElementById("Mainid").src='${ctx}/StayRegister/tolist.do?LvKeLeiXingId='+36;
   }
   
   

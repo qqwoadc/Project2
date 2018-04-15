@@ -1,6 +1,7 @@
 package com.cskaoyan.dao;
 
 import com.cskaoyan.bean.Financialstatistics;
+import com.cskaoyan.bean.Financialstatisticsparticular;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -18,4 +19,5 @@ public interface FinancialstatisticsMapper {
     public float[] getxiaoFeiJinE();
     public float[] getJieZhangJinE();
 
+    public Financialstatisticsparticular getFinancialstatisticsparticular(int stayregisterId);
 }

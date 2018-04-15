@@ -7,6 +7,14 @@ public class Downorder {
     private int far_id;
     private String attributeDetailsName;
 
+    public Downorder() {
+    }
+
+    public Downorder(int far_id, String attributeDetailsName) {
+        this.far_id = far_id;
+        this.attributeDetailsName = attributeDetailsName;
+    }
+
     @Override
     public String toString() {
         return "Downorder{" +
