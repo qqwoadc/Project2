@@ -93,10 +93,10 @@
   <div class="container" style="height:630px;overflow-x:auto;border: solid; border-color: #DDDDDD;">
 
     <input id="predetermineId" type="hidden" value="${predetermineId}">
-    <input id="roomNumber" type="hidden" value="${roomNumber}">
+    <input id="roomNumberyuan" name="roomNumberyuan" type="hidden" value="${roomNumberyuan}">
     <input id="lvkeorteamId" type="hidden" value="${id}" >  <!-- 是团队还是旅客的ID -->
     <input id="teamId" type="hidden" value="${type}" >  <!-- 是团队还是旅客 -->
-    <input id="pangduan" type="hidden" value="${pangduan}" >  <!-- 是团队还是旅客 -->
+    <input id="teamTrueId" type="hidden" value="${teamId}" >  <!-- 是团队还是旅客 -->
     
     <div class="span12" style="text-align: center;">
       <div class="row-fluid">
@@ -393,8 +393,11 @@
      var id= document.getElementById("lvkeorteamId").value;
      var teamId= document.getElementById("teamId").value;
      var predetermineId=document.getElementById("predetermineId").value;
+     var roomNumberyuan=document.getElementById("roomNumberyuan").value;
+     var teamTrueId=document.getElementById("teamTrueId").value;
      form1.action="${ctx}/Predetermine/update.do?id="+id+"&type="+teamId+"&roomIdShuZu="
-     +roomIdShuZu+"&predetermineId="+predetermineId;
+     +roomIdShuZu+"&predetermineId="+predetermineId+"&roomNumberyuan="+roomNumberyuan+
+         "&teamTrueId="+teamTrueId;
      
      form1.submit(); 
    }

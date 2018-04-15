@@ -1,9 +1,6 @@
 package com.cskaoyan.dao;
 
-import com.cskaoyan.bean.Passenger;
-import com.cskaoyan.bean.Predetermine;
-import com.cskaoyan.bean.ReceiveTarget;
-import com.cskaoyan.bean.Room;
+import com.cskaoyan.bean.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -84,4 +81,6 @@ public interface PredetermineMapper {
     int updateRoomByNumber(@Param("roomNumber") String roomNumber1);
 
     int updatePredetermineStateById(@Param("predetermineId") String predetermineId);
+
+    int addPredetermineMSGToStayRegister(StayRegister stayRegister);
 }

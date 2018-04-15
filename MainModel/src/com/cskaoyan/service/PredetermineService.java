@@ -1,9 +1,6 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.bean.Passenger;
-import com.cskaoyan.bean.Predetermine;
-import com.cskaoyan.bean.ReceiveTarget;
-import com.cskaoyan.bean.Room;
+import com.cskaoyan.bean.*;
 import com.cskaoyan.utils.ListOne;
 import com.cskaoyan.utils.Page;
 
@@ -76,4 +73,6 @@ public interface PredetermineService {
     int updateRoomByNumber(String roomNumber1);
 
     int updatePredetermineStateById(String predetermineId);
+
+    int addPredetermineMSGToStayRegister(StayRegister stayRegister);
 }

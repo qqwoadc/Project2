@@ -1,9 +1,6 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.bean.Passenger;
-import com.cskaoyan.bean.Predetermine;
-import com.cskaoyan.bean.ReceiveTarget;
-import com.cskaoyan.bean.Room;
+import com.cskaoyan.bean.*;
 import com.cskaoyan.service.PassengerService;
 import com.cskaoyan.service.PredetermineService;
 import com.cskaoyan.service.RoomService;
@@ -411,7 +408,12 @@ public class PredetermineController {
             model.addAttribute("roomSetPolist",roomByNumber);
 
             //回写roomNumber
-            model.addAttribute("roomNumber",roomNumber);
+            model.addAttribute("roomNumberyuan",roomNumber);
+
+            //回写teamId
+            int teamId = predeterMSGById.getTeamId();
+            model.addAttribute("teamId",teamId);
+
         }else {
             //为散客
             //回写predetermineId
@@ -445,7 +447,7 @@ public class PredetermineController {
             model.addAttribute("roomSetPolist",roomByNumber);
 
             //回写roomNumber
-            model.addAttribute("roomNumber",roomNumber);
+            model.addAttribute("roomNumberyuan",roomNumber);
         }
 
         return "/WEB-INF/jsp/predetermine/update.jsp";
@@ -463,6 +465,10 @@ public class PredetermineController {
 
         //选中对象的id
         int id = Integer.parseInt(request.getParameter("id"));
+
+        System.out.println();
+        System.out.println(id);
+        System.out.println("呵呵呵呵");
         //passengerI区分团队和旅客
         int type = Integer.parseInt(request.getParameter("type"));
 
@@ -489,7 +495,10 @@ public class PredetermineController {
         String commodityName = request.getParameter("commodityName");
 
         //得到修改前的roomNumber
-        String roomNumber1 = request.getParameter("roomNumber");
+        String roomNumberyuan = request.getParameter("roomNumberyuan");
+
+        //
+        String teamTrueId = request.getParameter("teamTrueId");
 
 
         //根据passengerId判断输入类型
@@ -547,9 +556,16 @@ public class PredetermineController {
                 predetermineService.updateRoomById(roomId);
 
                 //判断房间是否发生了更改
-                if(!roomNumber1.equals(roomNumber)){
+
+                System.out.println();
+                System.out.println(roomNumberyuan);
+                System.out.println("roomNumber1");
+                System.out.println();
+                System.out.println(roomNumber);
+                System.out.println("roomNumber");
+                if(!roomNumberyuan.equals(roomNumber)){
                     //房间发生更改，将原房间状态变为空房间
-                    predetermineService.updateRoomByNumber(roomNumber1);
+                    predetermineService.updateRoomByNumber(roomNumberyuan);
 
                 }
 
@@ -590,10 +606,10 @@ public class PredetermineController {
                 predetermine.setPredetermineStateName("未安排");
 
                 //设置teamId
-                predetermine.setTeamId(id);
+                predetermine.setTeamId(Integer.parseInt(teamTrueId));
 
                 //设置receiveTeamName
-                ReceiveTarget teamById = predetermineService.findTeamById(id);
+                ReceiveTarget teamById = predetermineService.findTeamById(Integer.parseInt(teamTrueId));
                 String teamName = teamById.getTeamName();
                 predetermine.setReceiveTeamName(teamName);
 
@@ -610,9 +626,9 @@ public class PredetermineController {
                 System.out.println(i1);
 
                 //判断房间是否发生了更改
-                if(!roomNumber1.equals(roomNumber)){
+                if(!roomNumberyuan.equals(roomNumber)){
                     //房间发生更改，将原房间状态变为空房间
-                    predetermineService.updateRoomByNumber(roomNumber1);
+                    predetermineService.updateRoomByNumber(roomNumberyuan);
 
                 }
 
@@ -659,12 +675,43 @@ public class PredetermineController {
 
         //更新predetermine状态
         predetermineService.updatePredetermineStateById(predetermineId);
+        //安排房间，将信息添加进住宿登记表
+        if (predeterMSGById.getPassengerId()!=0){
+            //预定信息中的为旅客
+            StayRegister stayRegister = new StayRegister();
+
+            String passengerName = predeterMSGById.getPassengerName();
+            String receiveTargetTypeName = predeterMSGById.getReceiveTargetTypeName();
+
+            stayRegister.setPredetermineId(Integer.parseInt(predetermineId));
+            stayRegister.setPassengerName(passengerName);
+            stayRegister.setLvkeleixing(receiveTargetTypeName);
+
+            //添加
+            predetermineService.addPredetermineMSGToStayRegister(stayRegister);
+        }else {
+            //预定信息中为团队
+
+            StayRegister stayRegister = new StayRegister();
+
+            String receivePrincipal = predeterMSGById.getReceivePrincipal();
+            String receiveTeamName = predeterMSGById.getReceiveTeamName();
+
+            stayRegister.setPredetermineId(Integer.parseInt(predetermineId));
+            stayRegister.setPassengerName(receivePrincipal);
+            stayRegister.setLvkeleixing(receiveTeamName);
+
+            //添加
+            predetermineService.addPredetermineMSGToStayRegister(stayRegister);
+
+        }
 
         String tiaoZhuang = request.getParameter("tiaoZhuang");
 
         //判断是否跳转到住宿登记页面
         if (tiaoZhuang=="1"){
             //跳转到住宿登记页面
+            request.getRequestDispatcher("/StayRegister/tolist.do").forward(request,response);
 
 
         }else if (tiaoZhuang=="2"){

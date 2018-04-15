@@ -1,9 +1,6 @@
 package com.cskaoyan.service.impl;
 
-import com.cskaoyan.bean.Passenger;
-import com.cskaoyan.bean.Predetermine;
-import com.cskaoyan.bean.ReceiveTarget;
-import com.cskaoyan.bean.Room;
+import com.cskaoyan.bean.*;
 import com.cskaoyan.dao.PassengerMapper;
 import com.cskaoyan.dao.PredetermineMapper;
 import com.cskaoyan.dao.RoomMapper;
@@ -314,6 +311,12 @@ public class PredetermineServiceImpl implements PredetermineService {
 
         int id = dao.updatePredetermineStateById(predetermineId);
         return id;
+    }
+
+    @Override
+    public int addPredetermineMSGToStayRegister(StayRegister stayRegister) {
+        int i = dao.addPredetermineMSGToStayRegister(stayRegister);
+        return i;
     }
 
 

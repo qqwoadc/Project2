@@ -156,4 +156,8 @@
     <update id="updatePredetermineStateById">
         UPDATE predetermine SET predetermineStateName="已安排" WHERE predetermineId=#{predetermineId}
     </update>
+
+    <insert id="addPredetermineMSGToStayRegister" parameterType="stayRegister">
+        INSERT into stayregister VALUES (null,#{predetermineId},#{passengerName},null,null,null,null,null,null,#{lvkeleixing})
+    </insert>
 </mapper>
