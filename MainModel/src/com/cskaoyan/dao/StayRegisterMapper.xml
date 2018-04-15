@@ -47,31 +47,31 @@
         -->
         update stayregister
         <set>
-            <if test="predetermineId != null">
+            <if test="predetermineId != null and predetermineId!=''">
                 predetermineId = #{predetermineId,jdbcType=INTEGER},
             </if>
-            <if test="passengerName != null">
+            <if test="passengerName != null and passengerName!=''">
                 passengerName = #{passengerName,jdbcType=VARCHAR},
             </if>
-            <if test="changingRoomNumber != null">
+            <if test="changingRoomNumber != null and changingRoomNumber!=''">
                 changingRoomNumber = #{changingRoomNumber,jdbcType=INTEGER},
             </if>
-            <if test="changRoomMoney != null">
+            <if test="changRoomMoney != null and changRoomMoney!=''">
                 changRoomMoney = #{changRoomMoney,jdbcType=REAL},
             </if>
-            <if test="changRoomTime != null">
+            <if test="changRoomTime != null and changRoomTime!=''">
                 changRoomTime = #{changRoomTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="registerTime != null">
+            <if test="registerTime != null and registerTime!=''">
                 registerTime = #{registerTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="sumConst != null">
+            <if test="sumConst != null and sumConst!=''">
                 sumConst = #{sumConst,jdbcType=REAL},
             </if>
-            <if test="isBill != null">
+            <if test="isBill != null and isBill!=''">
                 isBill = #{isBill,jdbcType=VARCHAR},
             </if>
-            <if test="lvkeleixing != null">
+            <if test="lvkeleixing != null and lvkeleixing!=''">
                 lvkeleixing = #{lvkeleixing,jdbcType=VARCHAR},
             </if>
         </set>
