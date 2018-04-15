@@ -4,6 +4,7 @@ import com.cskaoyan.bean.ReceiveTarget;
 import com.cskaoyan.utils.Page;
 import com.cskaoyan.utils.ReceiveTargetVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ReceiveTargetService {
@@ -55,4 +56,8 @@ public interface ReceiveTargetService {
     /*模糊查询后分页*/
     Page<ReceiveTarget> searchPartPage(String txtname, int currentPage,double limit);
 
+    //查找所有的对象（不分页）
+    ArrayList<ReceiveTarget> findAllReceiveTarget();
+    //按团队名字搜索
+    ArrayList<ReceiveTarget> findReceiveByName(String name);
 }

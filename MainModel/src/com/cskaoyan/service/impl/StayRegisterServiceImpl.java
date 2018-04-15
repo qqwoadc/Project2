@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class StayRegisterServiceImpl implements StayRegisterService {
@@ -121,5 +122,10 @@ public class StayRegisterServiceImpl implements StayRegisterService {
     @Override
     public StayRegisterDetails getAllMessage(int srId) {
         return dao.getAllMessage(srId);
+    }
+
+    @Override
+    public int updateByLvkeType(String lvkeleixing, int id) {
+        return dao.updateByLvkeType(lvkeleixing,id);
     }
 }

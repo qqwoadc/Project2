@@ -32,6 +32,26 @@ public class Financialstatisticsparticular {
     private String predeterminePassengerPapersNumber;
     private String predeterminePassengerContactPhoneNumber;
 
+    private String receiveContactPhoneNUmber;
+
+    private float zhuSuFei;
+
+    public float getZhuSuFei() {
+        return zhuSuFei;
+    }
+
+    public void setZhuSuFei(float zhuSuFei) {
+        this.zhuSuFei = zhuSuFei;
+    }
+
+    public String getReceiveContactPhoneNUmber() {
+        return receiveContactPhoneNUmber;
+    }
+
+    public void setReceiveContactPhoneNUmber(String receiveContactPhoneNUmber) {
+        this.receiveContactPhoneNUmber = receiveContactPhoneNUmber;
+    }
+
     public String getRoomNumber() {
         return roomNumber;
     }

@@ -14,6 +14,15 @@ public class StayRegister {
     private float sumConst;
     private String isBill;
     private String lvkeleixing;
+    private String rentOutTypeName;
+
+    public String getRentOutTypeName() {
+        return rentOutTypeName;
+    }
+
+    public void setRentOutTypeName(String rentOutTypeName) {
+        this.rentOutTypeName = rentOutTypeName;
+    }
 
     @Override
     public String toString() {
@@ -28,6 +37,7 @@ public class StayRegister {
                 ", sumConst=" + sumConst +
                 ", isBill='" + isBill + '\'' +
                 ", lvkeleixing='" + lvkeleixing + '\'' +
+                ", rentOutTypeName='" + rentOutTypeName + '\'' +
                 '}';
     }
 
@@ -109,4 +119,5 @@ public class StayRegister {
     public void setSumConst(float sumConst) {
         this.sumConst = sumConst;
     }
+
 }

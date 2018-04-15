@@ -6,20 +6,43 @@ import com.cskaoyan.utils.PassengerVO;
 import java.util.ArrayList;
 
 public interface PassengerMapper {
-    //显示所有的旅客
-    ArrayList<Passenger> findAllPassenger(PassengerVO passengerVO);
-    //增加旅客
-    int addPassenger(Passenger passenger);
-    //更新用户信息
-    int updatePassenger(Passenger passenger);
-    //删除用户
-    int deletePassenger(int id);
-    //通过name查旅客
-    ArrayList<Passenger> findPassengerByName(PassengerVO passengerVO);
-    //统计所有的旅客
+
+
+    int insert(Passenger record);
+
+    int updateByPrimaryKey(Passenger record);
+
+
+
+    //删除
+    int deleteByPrimaryKey(Integer id);
+
+    //插入passenger
+    int insertSelective(Passenger record);
+
+    //根据id查出对象
+    Passenger selectByPrimaryKey(Integer id);
+
+    //更新
+    int updateByPrimaryKeySelective(Passenger record);
+
+
+
+    //求所有旅客数量(自己写)
     int countAllPassenger();
-    //通过名字统计所有的旅客
+
+    //分页查询(自己写)
+    ArrayList<Passenger> selectPassengersList(PassengerVO passengerVO);
+
+    //模糊查询数量(自己写)
     int countAllPassengerByName(String txtname);
-    //通过id查找所有的旅客
-    Passenger findPassengerById(int id);
+
+    //模糊分页(自己写)
+    ArrayList<Passenger> findPassengerByName(PassengerVO passengerVO);
+
+
+
+
+
+
 }

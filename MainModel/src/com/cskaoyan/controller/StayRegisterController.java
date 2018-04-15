@@ -1,10 +1,7 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.service.DownorderMapperService;
-import com.cskaoyan.service.RegisterService;
-import com.cskaoyan.service.RoomService;
-import com.cskaoyan.service.StayRegisterService;
+import com.cskaoyan.service.*;
 import com.cskaoyan.utils.Downorder;
 import com.cskaoyan.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
@@ -39,6 +38,12 @@ public class StayRegisterController {
 //    张宇江自用service
     @Autowired
     RegisterService registerService;
+
+    @Autowired
+    DepositService depositService;
+
+    @Autowired
+    ReceiveTargetService receiveTargetService;
 
 //    列表显示
     @RequestMapping(path = "/StayRegister/tolist",method ={RequestMethod.GET,RequestMethod.POST})
@@ -74,7 +79,7 @@ public class StayRegisterController {
 //      加入model
         model.addAttribute("txtname",txtname);
         model.addAttribute("list",srpage);
-
+        model.addAttribute("listOne",listOne);
         return "/WEB-INF/jsp/stayregister/list.jsp";
     }
 
@@ -432,6 +437,60 @@ public class StayRegisterController {
         System.out.println(passenger);
 
         return passenger;
+    }
+
+
+//    大韩
+
+    @RequestMapping("StayRegister/todeposit.do")
+    public String toDeposit(int id, Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //查出某个人所有的押金记录,放到list中，在jsp中遍历list
+        ArrayList<Deposit> allDeposit = depositService.findAllDeposit(id);
+        model.addAttribute("list",allDeposit);
+        if(request.getParameter("deposit") != null && !request.getParameter("deposit").isEmpty()){
+            depositService.addDeposit(id);
+            request.getRequestDispatcher("todeposit.do").forward(request,response);
+            return"/WEB-INF/jsp/stayregister/deposit.jsp";
+        }
+        return"/WEB-INF/jsp/stayregister/deposit.jsp";
+    }
+
+    //55是散客，56是团队
+    //han实现接待对象由散客转化为团队
+    //到达转入页面
+    @RequestMapping("StayRegister/toshiftteam.do")
+    public String toShiftteam(int id, Model model, String txtname, int receiveTargetID, int LvKeLeiXingId) {
+        //散客信息回显
+
+
+        //显示团队信息或搜索团队信息
+        ArrayList<ReceiveTarget> allReceiveTarget = receiveTargetService.findAllReceiveTarget();
+        if (txtname == null || txtname.isEmpty()) {
+            model.addAttribute("listRT", allReceiveTarget);
+        } else {
+            ArrayList<ReceiveTarget> receiveByName = receiveTargetService.findReceiveByName("%" + txtname + "%");
+            model.addAttribute("listRT", receiveByName);
+        }
+        return "/WEB-INF/jsp/stayregister/shiftteam.jsp";
+    }
+
+    //转入团队
+    @RequestMapping("StayRegister/add.do")
+    public void addToTeamOrPerson(HttpServletRequest request, HttpServletResponse response, int id, int LvKeLeiXingId, int receiveTargetID) throws ServletException, IOException {
+        String lvkeleixing="";
+        //修改存储散客和团队的表
+        if (LvKeLeiXingId == 55) {
+            //55是散客，把predetermineId的receiveTargetTypeName改为散客
+            lvkeleixing = "团队";
+
+        }else if(LvKeLeiXingId == 56){
+            //56是团队，把predetermineId的receiveTargetTypeName改为散客
+            lvkeleixing = "散客";
+
+        }
+        //方法，updatePredetermineId(name)
+        stayRegisterService.updateByLvkeType(lvkeleixing,id);
+        request.getRequestDispatcher("tolist.do").forward(request, response);
     }
 
 }

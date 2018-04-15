@@ -30,4 +30,7 @@ public interface StayRegisterService {
     int addStayRegisterByArrangeRoom(ArrangeRoom arrangeRoom) throws ParseException;
 
     StayRegisterDetails getAllMessage(int srId);
+
+    //修改旅客类型
+    int updateByLvkeType(@Param("lvkeleixing") String lvkeleixing, @Param("id") int id);
 }

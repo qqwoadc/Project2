@@ -1,92 +1,340 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.dao.PassengerMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Passenger">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="genderName" jdbcType="VARCHAR" property="genderName" />
+    <result column="birthDate" jdbcType="VARCHAR" property="birthDate" />
+    <result column="nationName" jdbcType="VARCHAR" property="nationName" />
+    <result column="licenceIssuingAuthorty" jdbcType="VARCHAR" property="licenceIssuingAuthorty" />
+    <result column="profession" jdbcType="VARCHAR" property="profession" />
+    <result column="educationDegreeID" jdbcType="VARCHAR" property="educationDegreeID" />
+    <result column="passengerLevelName" jdbcType="VARCHAR" property="passengerLevelName" />
+    <result column="papersValidity" jdbcType="VARCHAR" property="papersValidity" />
+    <result column="papersName" jdbcType="VARCHAR" property="papersName" />
+    <result column="papersNumber" jdbcType="VARCHAR" property="papersNumber" />
+    <result column="unitsOrAddress" jdbcType="VARCHAR" property="unitsOrAddress" />
+    <result column="thingReasonID" jdbcType="VARCHAR" property="thingReasonID" />
+    <result column="whereAreFrom" jdbcType="VARCHAR" property="whereAreFrom" />
+    <result column="whereToGo" jdbcType="VARCHAR" property="whereToGo" />
+    <result column="contactPhoneNumber" jdbcType="VARCHAR" property="contactPhoneNumber" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="genderID" jdbcType="VARCHAR" property="genderID" />
+    <result column="nationID" jdbcType="VARCHAR" property="nationID" />
+    <result column="passengerLevelID" jdbcType="VARCHAR" property="passengerLevelID" />
+    <result column="papersID" jdbcType="VARCHAR" property="papersID" />
+    <result column="educationDegree" jdbcType="VARCHAR" property="educationDegree" />
+    <result column="thingReason" jdbcType="VARCHAR" property="thingReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, genderName, birthDate, nationName, licenceIssuingAuthorty, profession, 
+    educationDegreeID, passengerLevelName, papersValidity, papersName, papersNumber, 
+    unitsOrAddress, thingReasonID, whereAreFrom, whereToGo, contactPhoneNumber, remarks, 
+    genderID, nationID, passengerLevelID, papersID, educationDegree, thingReason
+  </sql>
 
-    <select id="findAllPassenger"  parameterType="com.cskaoyan.utils.PassengerVO" resultType="com.cskaoyan.bean.Passenger">
-        SELECT * from  passenger limit #{limit} offset #{offset};
-    </select>
-    <select id="countAllPassenger" resultType="int">
-        SELECT  COUNT(*) from passenger
-    </select>
+  <select id="countAllPassenger" resultType="int">
+    SELECT  COUNT(*) from passenger
+  </select>
+
+  <select id="selectPassengersList"  parameterType="com.cskaoyan.utils.PassengerVO" resultType="com.cskaoyan.bean.Passenger">
+    SELECT * from  passenger limit #{limit} offset #{offset};
+  </select>
 
 
-    <update id="updatePassenger" parameterType="com.cskaoyan.bean.Passenger">
-        update passenger
-        <set>
-        <if test="name != null">
-            name = #{name,jdbcType=VARCHAR},
-        </if>
-        <if test="genderName != null">
-            genderName = #{genderName,jdbcType=VARCHAR},
-        </if>
-        <if test="birthDate != null">
-            birthDate = #{birthDate,jdbcType=INTEGER},
-        </if>
-        <if test="nationName != null">
-            nationName = #{nationName,jdbcType=INTEGER},
-        </if>
-        <if test="licenceIssuingAuthorty != null">
-            licenceIssuingAuthorty = #{licenceIssuingAuthorty,jdbcType=DOUBLE},
-        </if>
-        <if test="profession != null">
-            profession = #{profession,jdbcType=DOUBLE},
-        </if>
-        <if test="educationDegreeID != null">
-            educationDegreeID = #{educationDegreeID,jdbcType=INTEGER},
-        </if>
-        <if test="passengerLevelName != null">
-            passengerLevelName = #{passengerLevelName,jdbcType=INTEGER},
-        </if>
-        <if test="papersValidity != null">
-            papersValidity = #{papersValidity,jdbcType=DOUBLE},
-        </if>
-        <if test="papersName != null">
-            papersName = #{papersName,jdbcType=VARCHAR},
-        </if>
-        <if test="papersNumber != null">
-            papersNumber = #{papersNumber,jdbcType=INTEGER},
-        </if>
-        <if test="unitsOrAddress != null">
-            unitsOrAddress = #{unitsOrAddress,jdbcType=INTEGER},
-        </if>
-        <if test="thingReasonID != null">
-            thingReasonID = #{thingReasonID,jdbcType=INTEGER},
-        </if>
-        <if test="whereAreFrom != null">
-            whereAreFrom = #{whereAreFrom,jdbcType=INTEGER},
-        </if>
-        <if test="whereToGo != null">
-            whereToGo = #{whereToGo,jdbcType=INTEGER},
-        </if>
-        <if test="contactPhoneNumber != null">
-            contactPhoneNumber = #{contactPhoneNumber,jdbcType=INTEGER},
-        </if>
-        <if test="remarks != null">
-            remarks = #{remarks,jdbcType=INTEGER},
-        </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
 
-    <insert id="addPassenger" parameterType="passenger" >
-        INSERT INTO passenger VALUES (null,#{name},#{genderName},#{birthDate},#{nationName},
-        #{licenceIssuingAuthorty},#{profession},#{educationDegreeID},
-         #{passengerLevelName},#{papersValidity},#{papersName},
-         #{papersNumber},#{unitsOrAddress},#{thingReasonID},#{whereAreFrom},
-         #{whereToGo},#{contactPhoneNumber},#{remarks})
-    </insert>
+  <select id="countAllPassengerByName"  parameterType="string" resultType="int">
+    SELECT count(*) from  passenger WHERE name like #{name}
+  </select>
 
-    <delete id="deletePassenger" parameterType="int">
-        DELETE  from  passenger WHERE id=#{id}
-    </delete>
 
-    <select id="findPassengerByName" parameterType="com.cskaoyan.utils.PassengerVO" resultType="com.cskaoyan.bean.Passenger">
-        SELECT * from  passenger WHERE name like #{name} limit #{limit} offset #{offset}
-    </select>
-    <select id="countAllPassengerByName"  parameterType="string" resultType="int">
-        SELECT count(*) from  passenger WHERE name like #{name}
-    </select>
-    <select id="findPassengerById"  parameterType="int" resultType="com.cskaoyan.bean.Passenger">
-        SELECT * from  passenger WHERE id = #{id}
-    </select>
+
+  <select id="findPassengerByName" parameterType="com.cskaoyan.utils.PassengerVO" resultType="com.cskaoyan.bean.Passenger">
+    SELECT * from  passenger WHERE name like #{name} limit #{limit} offset #{offset}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from passenger
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from passenger
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cskaoyan.bean.Passenger">
+    insert into passenger (id, name, genderName, 
+      birthDate, nationName, licenceIssuingAuthorty, 
+      profession, educationDegreeID, passengerLevelName, 
+      papersValidity, papersName, papersNumber, 
+      unitsOrAddress, thingReasonID, whereAreFrom, 
+      whereToGo, contactPhoneNumber, remarks, 
+      genderID, nationID, passengerLevelID, 
+      papersID, educationDegree, thingReason
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{genderName,jdbcType=VARCHAR}, 
+      #{birthDate,jdbcType=VARCHAR}, #{nationName,jdbcType=VARCHAR}, #{licenceIssuingAuthorty,jdbcType=VARCHAR}, 
+      #{profession,jdbcType=VARCHAR}, #{educationDegreeID,jdbcType=VARCHAR}, #{passengerLevelName,jdbcType=VARCHAR}, 
+      #{papersValidity,jdbcType=VARCHAR}, #{papersName,jdbcType=VARCHAR}, #{papersNumber,jdbcType=VARCHAR}, 
+      #{unitsOrAddress,jdbcType=VARCHAR}, #{thingReasonID,jdbcType=VARCHAR}, #{whereAreFrom,jdbcType=VARCHAR}, 
+      #{whereToGo,jdbcType=VARCHAR}, #{contactPhoneNumber,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{genderID,jdbcType=VARCHAR}, #{nationID,jdbcType=VARCHAR}, #{passengerLevelID,jdbcType=VARCHAR}, 
+      #{papersID,jdbcType=VARCHAR}, #{educationDegree,jdbcType=VARCHAR}, #{thingReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Passenger">
+    insert into passenger
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="genderName != null">
+        genderName,
+      </if>
+      <if test="birthDate != null">
+        birthDate,
+      </if>
+      <if test="nationName != null">
+        nationName,
+      </if>
+      <if test="licenceIssuingAuthorty != null">
+        licenceIssuingAuthorty,
+      </if>
+      <if test="profession != null">
+        profession,
+      </if>
+      <if test="educationDegreeID != null">
+        educationDegreeID,
+      </if>
+      <if test="passengerLevelName != null">
+        passengerLevelName,
+      </if>
+      <if test="papersValidity != null">
+        papersValidity,
+      </if>
+      <if test="papersName != null">
+        papersName,
+      </if>
+      <if test="papersNumber != null">
+        papersNumber,
+      </if>
+      <if test="unitsOrAddress != null">
+        unitsOrAddress,
+      </if>
+      <if test="thingReasonID != null">
+        thingReasonID,
+      </if>
+      <if test="whereAreFrom != null">
+        whereAreFrom,
+      </if>
+      <if test="whereToGo != null">
+        whereToGo,
+      </if>
+      <if test="contactPhoneNumber != null">
+        contactPhoneNumber,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="genderID != null">
+        genderID,
+      </if>
+      <if test="nationID != null">
+        nationID,
+      </if>
+      <if test="passengerLevelID != null">
+        passengerLevelID,
+      </if>
+      <if test="papersID != null">
+        papersID,
+      </if>
+      <if test="educationDegree != null">
+        educationDegree,
+      </if>
+      <if test="thingReason != null">
+        thingReason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="genderName != null">
+        #{genderName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nationName != null">
+        #{nationName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceIssuingAuthorty != null">
+        #{licenceIssuingAuthorty,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="educationDegreeID != null">
+        #{educationDegreeID,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerLevelName != null">
+        #{passengerLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="papersValidity != null">
+        #{papersValidity,jdbcType=VARCHAR},
+      </if>
+      <if test="papersName != null">
+        #{papersName,jdbcType=VARCHAR},
+      </if>
+      <if test="papersNumber != null">
+        #{papersNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="unitsOrAddress != null">
+        #{unitsOrAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="thingReasonID != null">
+        #{thingReasonID,jdbcType=VARCHAR},
+      </if>
+      <if test="whereAreFrom != null">
+        #{whereAreFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="whereToGo != null">
+        #{whereToGo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhoneNumber != null">
+        #{contactPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="genderID != null">
+        #{genderID,jdbcType=VARCHAR},
+      </if>
+      <if test="nationID != null">
+        #{nationID,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerLevelID != null">
+        #{passengerLevelID,jdbcType=VARCHAR},
+      </if>
+      <if test="papersID != null">
+        #{papersID,jdbcType=VARCHAR},
+      </if>
+      <if test="educationDegree != null">
+        #{educationDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="thingReason != null">
+        #{thingReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Passenger">
+    update passenger
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="genderName != null">
+        genderName = #{genderName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        birthDate = #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nationName != null">
+        nationName = #{nationName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceIssuingAuthorty != null">
+        licenceIssuingAuthorty = #{licenceIssuingAuthorty,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="educationDegreeID != null">
+        educationDegreeID = #{educationDegreeID,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerLevelName != null">
+        passengerLevelName = #{passengerLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="papersValidity != null">
+        papersValidity = #{papersValidity,jdbcType=VARCHAR},
+      </if>
+      <if test="papersName != null">
+        papersName = #{papersName,jdbcType=VARCHAR},
+      </if>
+      <if test="papersNumber != null">
+        papersNumber = #{papersNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="unitsOrAddress != null">
+        unitsOrAddress = #{unitsOrAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="thingReasonID != null">
+        thingReasonID = #{thingReasonID,jdbcType=VARCHAR},
+      </if>
+      <if test="whereAreFrom != null">
+        whereAreFrom = #{whereAreFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="whereToGo != null">
+        whereToGo = #{whereToGo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhoneNumber != null">
+        contactPhoneNumber = #{contactPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="genderID != null">
+        genderID = #{genderID,jdbcType=VARCHAR},
+      </if>
+      <if test="nationID != null">
+        nationID = #{nationID,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerLevelID != null">
+        passengerLevelID = #{passengerLevelID,jdbcType=VARCHAR},
+      </if>
+      <if test="papersID != null">
+        papersID = #{papersID,jdbcType=VARCHAR},
+      </if>
+      <if test="educationDegree != null">
+        educationDegree = #{educationDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="thingReason != null">
+        thingReason = #{thingReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Passenger">
+    update passenger
+    set name = #{name,jdbcType=VARCHAR},
+      genderName = #{genderName,jdbcType=VARCHAR},
+      birthDate = #{birthDate,jdbcType=VARCHAR},
+      nationName = #{nationName,jdbcType=VARCHAR},
+      licenceIssuingAuthorty = #{licenceIssuingAuthorty,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      educationDegreeID = #{educationDegreeID,jdbcType=VARCHAR},
+      passengerLevelName = #{passengerLevelName,jdbcType=VARCHAR},
+      papersValidity = #{papersValidity,jdbcType=VARCHAR},
+      papersName = #{papersName,jdbcType=VARCHAR},
+      papersNumber = #{papersNumber,jdbcType=VARCHAR},
+      unitsOrAddress = #{unitsOrAddress,jdbcType=VARCHAR},
+      thingReasonID = #{thingReasonID,jdbcType=VARCHAR},
+      whereAreFrom = #{whereAreFrom,jdbcType=VARCHAR},
+      whereToGo = #{whereToGo,jdbcType=VARCHAR},
+      contactPhoneNumber = #{contactPhoneNumber,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      genderID = #{genderID,jdbcType=VARCHAR},
+      nationID = #{nationID,jdbcType=VARCHAR},
+      passengerLevelID = #{passengerLevelID,jdbcType=VARCHAR},
+      papersID = #{papersID,jdbcType=VARCHAR},
+      educationDegree = #{educationDegree,jdbcType=VARCHAR},
+      thingReason = #{thingReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -39,4 +39,28 @@
         SELECT sumConst from financialstatistics
     </select>
 
+    <select id="getFinancialstatisticsparticular" parameterType="int" resultMap="fsp">
+        SELECT * FROM stayregister LEFT OUTER JOIN predetermine ON stayregister.predetermineId = predetermine.predetermineId
+LEFT OUTER JOIN room ON predetermine.roomNumber=room.roomNumber
+LEFT OUTER JOIN passenger ON stayregister.passengerName=passenger.name
+LEFT OUTER JOIN receivetarget ON receivetarget.id=predetermine.teamId
+WHERE srId = #{stayregisterdetailsId}
+    </select>
+
+    <resultMap id="fsp" type="financialstatisticsparticular">
+        <result property="roomGuestRoomLevelName" column="guestRoomLevelName"/>
+        <result property="receiveTeamName" column="lvkeleixing"/>
+        <result property="passengerGenderName" column="genderID"/>
+        <result property="passengerName" column="stayregister.passengerName"/>
+        <result property="passengerPapersNumber" column="papersNumber"/>
+        <result property="pssengerContactPhoneNumber" column="passenger.contactPhoneNumber"/>
+        <result property="passengerTypeName" column="lvkeleixing"/>
+        <result property="passengerLevelName" column="passengerLevelID"/>
+        <result property="billUnitName" column="isBill"/>
+        <result property="roomStandardPriceDay" column="standardPriceDay"/>
+        <result property="roomStandardPrice" column="standardPrice"/>
+        <result property="roomFirstPrice" column="firstPrice"/>
+        <result property="predeterminePassengerName" column="predetermine.passengerName"/>
+        <result property="predeterminePassengerContactPhoneNumber" column="predetermine.passengerContactPhoneNumber"/>
+    </resultMap>
 </mapper>

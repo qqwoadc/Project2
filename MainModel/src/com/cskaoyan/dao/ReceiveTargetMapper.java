@@ -3,6 +3,7 @@ package com.cskaoyan.dao;
 import com.cskaoyan.bean.ReceiveTarget;
 import com.cskaoyan.utils.ReceiveTargetVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ReceiveTargetMapper {
@@ -50,4 +51,11 @@ public interface ReceiveTargetMapper {
     * 根据条件查找的数量
     * */
     int findReceiveTargetPartCount(String txtname);
+
+
+    //无条件查找所有的登记对象
+    ArrayList<ReceiveTarget> findAllReceiveTarget();
+    //根据关键字进行查询
+    ArrayList<ReceiveTarget> findReceiveByName(String name);
+
 }

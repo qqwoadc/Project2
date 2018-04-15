@@ -74,12 +74,15 @@
             <if test="lvkeleixing != null and lvkeleixing!=''">
                 lvkeleixing = #{lvkeleixing,jdbcType=VARCHAR},
             </if>
+            <if test="rentOutTypeName != null and rentOutTypeName!=''">
+                rentOutTypeName = #{rentOutTypeName,jdbcType=VARCHAR},
+            </if>
         </set>
         where srId = #{srId,jdbcType=INTEGER}
     </update>
 
     <insert id="addStayRegister" parameterType="stayRegister">
-        INSERT into stayregister VALUES (null,#{predetermineId,jdbcType=INTEGER},#{passengerName,jdbcType=VARCHAR},#{changingRoomNumber,jdbcType=INTEGER},#{changRoomMoney,jdbcType=REAL},#{changRoomTime,jdbcType=TIMESTAMP},#{registerTime,jdbcType=TIMESTAMP},#{sumConst,jdbcType=REAL},#{isBill,jdbcType=VARCHAR},#{lvkeleixing,jdbcType=VARCHAR})
+        INSERT into stayregister VALUES (null,#{predetermineId,jdbcType=INTEGER},#{passengerName,jdbcType=VARCHAR},#{changingRoomNumber,jdbcType=INTEGER},#{changRoomMoney,jdbcType=REAL},#{changRoomTime,jdbcType=TIMESTAMP},#{registerTime,jdbcType=TIMESTAMP},#{sumConst,jdbcType=REAL},#{isBill,jdbcType=VARCHAR},#{lvkeleixing,jdbcType=VARCHAR},#{rentOutTypeName,jdbcType=VARCHAR})
     </insert>
 
     <select id="getAllMessage" parameterType="int" resultMap="srd">
@@ -94,4 +97,10 @@
         <result property="predetermineReceiveTargeTypeName" column="receiveTargetTypeName"/>
         <result property="passengerTypeName" column="lvkeleixing"/>
     </resultMap>
+
+    <!--修改旅客类型-->
+    <update id="updateByLvkeType">
+        UPDATE stayregister SET lvkeleixing = #{lvkeleixing} WHERE srId =#{id}
+    </update>
+
 </mapper>

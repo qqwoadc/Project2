@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.dao.DepositMapper">
+    <select id="findAllDeposit" parameterType="int" resultType="com.cskaoyan.bean.Deposit">
+        SELECT * FROM deposit WHERE predetermineId = #{predetermineId}
+    </select>
+    <insert id="addDeposit" parameterType="com.cskaoyan.bean.Deposit">
+        INSERT INTO deposit VALUES
+        (null,#{predetermineId},null,#{receiveTargeTypeName},#{deposit},#{depositPayWayName},null,null)
+    </insert>
+</mapper>

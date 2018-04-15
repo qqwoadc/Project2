@@ -105,6 +105,13 @@
         DELETE FROM receivetarget WHERE id=#{id};
     </select>
 
-
+    <!--查找所有的对象-->
+    <select id="findAllReceiveTarget" resultType="com.cskaoyan.bean.ReceiveTarget">
+    SELECT * FROM receivetarget
+    </select>
+    <!--按关键字搜索-->
+    <select id="findReceiveByName" parameterType="string" resultType="com.cskaoyan.bean.ReceiveTarget">
+    SELECT * FROM receivetarget WHERE teamName LIKE #{name}
+    </select>
 
 </mapper>

@@ -19,9 +19,8 @@ public interface FinancialstatisticsService {
     public float getJieZhangJinE();
 
 //    particular页面数据(待完成)
-    public Financialstatisticsparticular getParticularInformation();
-    public List<Consumption> getConsumption();
-    public List<Deposit> getDeposit();
 
-
+    public List<Consumption> getConsumption(int stayregisterId);
+    public List<Deposit> getDeposit(int stayregisterId);
+    public Financialstatisticsparticular getFinancialstatisticsparticular(int stayregisterId);
 }

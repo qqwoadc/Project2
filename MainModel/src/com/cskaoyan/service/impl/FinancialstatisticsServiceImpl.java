@@ -69,6 +69,8 @@ public class FinancialstatisticsServiceImpl implements FinancialstatisticsServic
             int stayregisterdetailsId = financialstatistic.getStayregisterdetailsId();
 //            查询其他表格，填充数据(调用其他的service方法)
             StayRegisterDetails allMessage = stayRegisterService.getAllMessage(stayregisterdetailsId);
+
+            vo.setId(stayregisterdetailsId);
             vo.setRoomNumber(allMessage.getRoomNumber());
             vo.setPassengerName(allMessage.getPassengerName());
 
@@ -135,19 +137,24 @@ public class FinancialstatisticsServiceImpl implements FinancialstatisticsServic
     }
 
     @Override
-    public Financialstatisticsparticular getParticularInformation() {
+    public List<Consumption> getConsumption(int stayregisterId) {
+
+
         return null;
     }
 
     @Override
-    public List<Consumption> getConsumption() {
+    public List<Deposit> getDeposit(int stayregisterId) {
+
+
         return null;
     }
 
     @Override
-    public List<Deposit> getDeposit() {
-        return null;
-    }
+    public Financialstatisticsparticular getFinancialstatisticsparticular(int stayregisterId) {
 
+        Financialstatisticsparticular financialstatisticsparticular = dao.getFinancialstatisticsparticular(stayregisterId);
+        return financialstatisticsparticular;
+    }
 
 }

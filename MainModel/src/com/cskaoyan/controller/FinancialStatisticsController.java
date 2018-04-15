@@ -41,13 +41,13 @@ public class FinancialStatisticsController {
     }
 
     @RequestMapping(path = "FinancialStatistics/toinformation")
-    public String particularInformation(Model model,String id){
+    public String particularInformation(Model model,Integer id){
 
 
 //        这些方法都需要传入id
-        Financialstatisticsparticular particularInformation = service.getParticularInformation();
-        List<Consumption> consumption = service.getConsumption();
-        List<Deposit> deposit = service.getDeposit();
+        Financialstatisticsparticular particularInformation = service.getFinancialstatisticsparticular(id);
+        List<Consumption> consumption = service.getConsumption(id);
+        List<Deposit> deposit = service.getDeposit(id);
 
         ArrayList<Financialstatisticsparticular> list = new ArrayList<>();
         list.add(particularInformation);

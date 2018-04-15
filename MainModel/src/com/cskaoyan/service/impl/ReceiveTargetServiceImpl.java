@@ -8,6 +8,7 @@ import com.cskaoyan.utils.ReceiveTargetVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -124,4 +125,13 @@ public class ReceiveTargetServiceImpl implements ReceiveTargetService {
     }
 
 
+    @Override
+    public ArrayList<ReceiveTarget> findAllReceiveTarget() {
+        return dao.findAllReceiveTarget();
+    }
+
+    @Override
+    public ArrayList<ReceiveTarget> findReceiveByName(String name) {
+        return dao.findReceiveByName(name);
+    }
 }

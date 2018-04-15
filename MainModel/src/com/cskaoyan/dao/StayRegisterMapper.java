@@ -19,7 +19,7 @@ public interface StayRegisterMapper {
                                                  @Param("roomNumber") String txt,
                                                  @Param("lvkeleixing")String lvkeleixing);
 
-    int gettotalItems(@Param("isBill")String isbill,@Param("lvkeleixing")String lvkeleixing,@Param("roomNumber")String txt);
+    int gettotalItems(@Param("isBill")String isbill,@Param("lvkeleixing")String lvkeleixing,@Param("roomNumber")String roomNumber);
 //    通过id修改
     int updateByPrimaryKeySelective(StayRegister sr);
 //增加
@@ -28,4 +28,9 @@ public interface StayRegisterMapper {
 //    与订单左交获取所有数据
 
     StayRegisterDetails getAllMessage(int srId);
+
+    //修改旅客类型
+    int updateByLvkeType(@Param("lvkeleixing") String lvkeleixing, @Param("id") int id);
+
+
 }

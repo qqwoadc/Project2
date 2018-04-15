@@ -13,25 +13,27 @@ import java.util.ArrayList;
 public class PassengerServiceImpl implements PassengerService {
     @Autowired
     PassengerMapper passengerMapper;
+
+
     @Override
     public ArrayList<Passenger> selectPassengersList(PassengerVO passengerVO) {
 
-        return passengerMapper.findAllPassenger(passengerVO);
+        return passengerMapper.selectPassengersList(passengerVO);
     }
 
     @Override
     public int deletePassengerById(int id) {
-        return passengerMapper.deletePassenger(id);
+        return passengerMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public int addPassenger(Passenger passenger) {
-        return passengerMapper.addPassenger(passenger);
+        return passengerMapper.insertSelective(passenger);
     }
 
     @Override
     public int updatePassenger(Passenger passenger) {
-        return passengerMapper.updatePassenger(passenger);
+        return passengerMapper.updateByPrimaryKeySelective(passenger);
     }
 
     @Override
@@ -45,12 +47,12 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public int coutAllPassengerByName(String txtname) {
+    public int countAllPassengerByName(String txtname) {
         return passengerMapper.countAllPassengerByName(txtname);
     }
 
     @Override
     public Passenger findPassengerById(int id) {
-        return passengerMapper.findPassengerById(id);
+        return passengerMapper.selectByPrimaryKey(id);
     }
 }
